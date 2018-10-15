@@ -1,0 +1,7 @@
+{
+  "name": "textbook-exchange",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
