@@ -14,14 +14,15 @@
 
 
 <ion-content padding class = "background-photo">
-<h1 class = "login-header" >Get rid of your textbooks and replace them now! </h1>
-<ion-card class = "login-card">
+	<h1 class = "login-header"  *ngIf = "displayLogin">Get rid of your textbooks and replace them now! </h1>
+<ion-card class = "login-card" *ngIf = "displayLogin">
+	<p> don't have an account yet? <a style = "color:#1c3d2b;" (click) = "goToRegister()"><u><b>register</b></u></a> now!</p>
 	<ion-item>
 	<ion-label floating>Email Address</ion-label>
 	<ion-input type="text" ></ion-input>
 	</ion-item>
 	<ion-item>
-	<ion-label floating>Password</ion-label>
+	<ion-label floating style = "margin-bottom:3rem;">Password</ion-label>
 	<ion-input type="password" ></ion-input>
 	</ion-item>
 </ion-card>

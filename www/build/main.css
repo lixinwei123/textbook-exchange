@@ -25679,10 +25679,48 @@ ion-navbar.toolbar {
   background-size: cover;
 }
 
+register ion-card {
+  height: 80%;
+  width: 63% !important;
+  margin: auto !important;
+  position: relative;
+  top: 10vh;
+  opacity: 0.9;
+  background-color: black !important;
+}
+
+register .close-button {
+  float: right;
+  background: transparent;
+  color: white;
+}
+
+register .input-information ion-item {
+  background-color: transparent;
+}
+
+register .input-information ion-input {
+  color: white;
+}
+
+register .next-step {
+  text-align: center;
+}
+
+register .next-step button {
+  background-color: transparent;
+}
+
 page-login .login-card {
-  width: 30%;
+  width: 50vw;
   margin: auto;
   margin-top: 13vh;
+  opacity: 0.8;
+}
+
+page-login .login-card p {
+  margin-top: 3rem;
+  text-align: center;
 }
 
 page-login .login-header {

@@ -1,0 +1,30 @@
+register {
+	ion-card{
+		    height: 80%;
+		    width: 63%!important;
+		    margin: auto!important;
+		    position: relative;
+		    top: 10vh;
+		    opacity: 0.9;
+		    background-color: black!important;
+	}
+	.close-button{
+		float:right;
+		background: transparent;
+		color:white;
+	}
+	.input-information{
+		ion-item{
+			background-color: transparent;
+		}
+		ion-input{
+			color:white;
+		}
+	}
+	.next-step{
+		text-align: center;
+		button{
+			background-color: transparent;
+		}
+	}
+}
