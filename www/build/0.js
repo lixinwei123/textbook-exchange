@@ -1,14 +1,14 @@
 webpackJsonp([0],{
 
-/***/ 271:
+/***/ 272:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterPageModule", function() { return RegisterPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OwnedBooksPageModule", function() { return OwnedBooksPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__owned_books__ = __webpack_require__(274);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var RegisterPageModule = /** @class */ (function () {
-    function RegisterPageModule() {
+var OwnedBooksPageModule = /** @class */ (function () {
+    function OwnedBooksPageModule() {
     }
-    RegisterPageModule = __decorate([
+    OwnedBooksPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__register__["a" /* RegisterPage */],
+                __WEBPACK_IMPORTED_MODULE_2__owned_books__["a" /* OwnedBooksPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__register__["a" /* RegisterPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__owned_books__["a" /* OwnedBooksPage */]),
             ],
         })
-    ], RegisterPageModule);
-    return RegisterPageModule;
+    ], OwnedBooksPageModule);
+    return OwnedBooksPageModule;
 }());
 
-//# sourceMappingURL=register.module.js.map
+//# sourceMappingURL=owned-books.module.js.map
 
 /***/ }),
 
@@ -42,9 +42,11 @@ var RegisterPageModule = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OwnedBooksPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_need_book_need_book__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_own_book_own_book__ = __webpack_require__(196);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,30 +58,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 /**
- * Generated class for the RegisterPage page.
+ * Generated class for the OwnedBooksPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var RegisterPage = /** @class */ (function () {
-    function RegisterPage(navCtrl, navParams) {
+var OwnedBooksPage = /** @class */ (function () {
+    function OwnedBooksPage(navCtrl, navParams, events, modalCtrl) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.events = events;
+        this.modalCtrl = modalCtrl;
+        this.mainChoice = true;
+        this.events.subscribe('showChoices', function () {
+            console.log("this got triggered");
+            _this.mainChoice = true;
+        });
     }
-    RegisterPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad RegisterPage');
+    OwnedBooksPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad OwnedBooksPage');
     };
-    RegisterPage = __decorate([
+    OwnedBooksPage.prototype.goToOwnedBooks = function () {
+        var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__components_own_book_own_book__["a" /* OwnBookComponent */]);
+        this.mainChoice = false;
+        modal.present();
+    };
+    OwnedBooksPage.prototype.goToNeedBooks = function () {
+        var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_2__components_need_book_need_book__["a" /* NeedBookComponent */]);
+        this.mainChoice = false;
+        modal.present();
+    };
+    OwnedBooksPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-register',template:/*ion-inline-start:"/Users/wanghui/Desktop/Textbook-exchange/textbook-exchange/src/pages/register/register.html"*/'<!--\n  Generated template for the RegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/wanghui/Desktop/Textbook-exchange/textbook-exchange/src/pages/register/register.html"*/,
+            selector: 'page-owned-books',template:/*ion-inline-start:"/Users/wanghui/Desktop/Textbook-exchange/textbook-exchange/src/pages/owned-books/owned-books.html"*/'<!--\n  Generated template for the OwnedBooksPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<!-- <ion-header>\n\n  <ion-navbar>\n    <ion-title>owned-books</ion-title>\n  </ion-navbar>\n\n</ion-header> -->\n\n\n<ion-content padding class = "background-photo">\n<div *ngIf = "mainChoice">\n<h1 class = "header-info">do you wish to register the books you owned or the books you need?</h1>\n<ion-grid class = "need-or-sell">\n	<ion-row>\n		<ion-col><button ion-button class = "button-1" (click) = "goToOwnedBooks()">Owned Textbooks</button></ion-col>\n		<ion-col><button ion-button class = "button-2" (click) = "goToNeedBooks()">Needed Textbooks</button></ion-col>\n	</ion-row>\n</ion-grid>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/wanghui/Desktop/Textbook-exchange/textbook-exchange/src/pages/owned-books/owned-books.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
-    ], RegisterPage);
-    return RegisterPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */]])
+    ], OwnedBooksPage);
+    return OwnedBooksPage;
 }());
 
-//# sourceMappingURL=register.js.map
+//# sourceMappingURL=owned-books.js.map
 
 /***/ })
 

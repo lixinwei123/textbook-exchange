@@ -2,6 +2,7 @@
 
 <ion-card>
 <button ion-button icon-only (click) = "closeModal();" class = "close-button"><ion-icon name = "close"></ion-icon></button>
+	<h1>Registration</h1>
 	<div class = "input-information">
 		<ion-item>
 		<ion-label floating>Email Address</ion-label>
@@ -16,11 +17,19 @@
 		<ion-input type="password" ></ion-input>
 		</ion-item>
 			<ion-item>
-		<ion-label floating style = "margin-bottom:3rem;">Confirm Password</ion-label>
+		<ion-label floating >Confirm Password</ion-label>
 		<ion-input type="password" ></ion-input>
+		</ion-item>
+		<ion-item>
+		<ion-label floating>First Name</ion-label>
+		<ion-input type="text" ></ion-input>
+		</ion-item>
+		<ion-item>
+		<ion-label floating>Last Name</ion-label>
+		<ion-input type="text" ></ion-input>
 		</ion-item>
 	</div>
 		<div class = "next-step">		
-			<button ion-button>Next Step</button>
+			<button ion-button (click) = "finishRegistration()">Finish Registration</button>
 		</div>
 </ion-card>

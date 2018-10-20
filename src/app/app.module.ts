@@ -7,13 +7,17 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import {RegisterComponent} from '../components/register/register';
+import {OwnBookComponent} from '../components/own-book/own-book';
+import {NeedBookComponent} from '../components/need-book/need-book';
 // import {RegisterPage} from '../pages/register/register';
 // import {LoginPage} from '../pages/login/login';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    RegisterComponent
+    RegisterComponent,
+    OwnBookComponent,
+    NeedBookComponent
     // RegisterPage
   ],
   imports: [
@@ -25,7 +29,9 @@ import {RegisterComponent} from '../components/register/register';
   entryComponents: [
     MyApp,
     HomePage,
-    RegisterComponent
+    RegisterComponent,
+    OwnBookComponent,
+    NeedBookComponent
     // RegisterPage
     
   ],

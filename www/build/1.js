@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 270:
+/***/ 271:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegistePageModule", function() { return RegistePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__registe__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(273);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var RegistePageModule = /** @class */ (function () {
-    function RegistePageModule() {
+var LoginPageModule = /** @class */ (function () {
+    function LoginPageModule() {
     }
-    RegistePageModule = __decorate([
+    LoginPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__registe__["a" /* RegistePage */],
+                __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__registe__["a" /* RegistePage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */]),
             ],
         })
-    ], RegistePageModule);
-    return RegistePageModule;
+    ], LoginPageModule);
+    return LoginPageModule;
 }());
 
-//# sourceMappingURL=registe.module.js.map
+//# sourceMappingURL=login.module.js.map
 
 /***/ }),
 
@@ -42,9 +42,10 @@ var RegistePageModule = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegistePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_register_register__ = __webpack_require__(194);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,30 +57,51 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+// import {RegisterPage} from '../pages/register/register';
 /**
- * Generated class for the RegistePage page.
+ * Generated class for the LoginPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var RegistePage = /** @class */ (function () {
-    function RegistePage(navCtrl, navParams) {
+var LoginPage = /** @class */ (function () {
+    function LoginPage(navCtrl, navParams, events, modalCtrl, actionSheet) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.events = events;
+        this.modalCtrl = modalCtrl;
+        this.actionSheet = actionSheet;
+        this.displayLogin = true;
+        this.events.subscribe('showLoginCard', function () {
+            console.log("this got triggered");
+            _this.displayLogin = true;
+        });
     }
-    RegistePage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad RegistePage');
+    LoginPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad LoginPage');
     };
-    RegistePage = __decorate([
+    LoginPage.prototype.goToRegister = function () {
+        var regModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_2__components_register_register__["a" /* RegisterComponent */]);
+        regModal.present();
+        this.displayLogin = false;
+    };
+    LoginPage.prototype.login = function () {
+        this.navCtrl.setRoot('OwnedBooksPage');
+    };
+    LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-registe',template:/*ion-inline-start:"/Users/wanghui/Desktop/Textbook-exchange/textbook-exchange/src/pages/registe/registe.html"*/'<!--\n  Generated template for the RegistePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>registe</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/wanghui/Desktop/Textbook-exchange/textbook-exchange/src/pages/registe/registe.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"/Users/wanghui/Desktop/Textbook-exchange/textbook-exchange/src/pages/login/login.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<!-- <ion-header>\n\n  <ion-navbar>\n    <ion-title>login</ion-title>\n  </ion-navbar>\n\n</ion-header> -->\n\n\n<ion-content padding class = "background-photo">\n	<h1 class = "login-header"  *ngIf = "displayLogin">Get rid of your textbooks and replace them now! </h1>\n<ion-card class = "login-card" *ngIf = "displayLogin">\n	<p> don\'t have an account yet? <a style = "color:#1c3d2b;" (click) = "goToRegister()"><u><b>register</b></u></a> now!</p>\n	<ion-item>\n	<ion-label floating>Email Address</ion-label>\n	<ion-input type="text" ></ion-input>\n	</ion-item>\n	<ion-item style = "margin-bottom:3rem;">\n	<ion-label floating >Password</ion-label>\n	<ion-input type="password" ></ion-input>\n	</ion-item>\n	<div style = "text-align:center;margin-bottom:3rem;"><button ion-button  color = "secondary" (click) = "login()">login</button></div>\n</ion-card>\n</ion-content>\n'/*ion-inline-end:"/Users/wanghui/Desktop/Textbook-exchange/textbook-exchange/src/pages/login/login.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
-    ], RegistePage);
-    return RegistePage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */]])
+    ], LoginPage);
+    return LoginPage;
 }());
 
-//# sourceMappingURL=registe.js.map
+//# sourceMappingURL=login.js.map
 
 /***/ })
 

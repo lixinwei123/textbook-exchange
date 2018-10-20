@@ -27,4 +27,7 @@ closeModal(){
 }
 
 
+finishRegistration(){
+	this.closeModal();
+}
 }

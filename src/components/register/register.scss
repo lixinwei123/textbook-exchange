@@ -1,12 +1,18 @@
 register {
 	ion-card{
-		    height: 80%;
+		    height: 86%;
 		    width: 63%!important;
 		    margin: auto!important;
 		    position: relative;
 		    top: 10vh;
 		    opacity: 0.9;
 		    background-color: black!important;
+		    h1{
+		    	text-align: center;
+		    	color:white!important;
+		    	margin-top:1.2rem!important;
+		    	margin-left:3rem!important;
+		    }
 	}
 	.close-button{
 		float:right;
@@ -22,6 +28,7 @@ register {
 		}
 	}
 	.next-step{
+		margin-top:1rem;
 		text-align: center;
 		button{
 			background-color: transparent;

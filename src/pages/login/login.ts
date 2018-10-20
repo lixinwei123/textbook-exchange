@@ -36,6 +36,8 @@ goToRegister(){
 	this.displayLogin = false;
 }
 
-
+login(){
+	this.navCtrl.setRoot('OwnedBooksPage');
+}
 
 }

@@ -1,0 +1,22 @@
+page-owned-books {
+	.header-info{
+		margin-top:4rem!important;
+		text-align: center;
+    	color: white;
+	}
+	.need-or-sell{
+		margin-top:4rem;
+		text-align: center;
+		button{
+		    opacity: 0.8;
+		}
+		.button-1{
+		    color: white;
+		    background-color:black;
+		}
+		.button-2{
+		    color: white;
+		    background-color:color($colors,secondary);
+		}
+	}
+}
