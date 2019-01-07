@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController,ActionSheetController, ViewController, Events, AlertController} from 'ionic-angular';
-/**
- * Generated class for the RegisterComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+
 @Component({
   selector: 'need-book',
   templateUrl: 'need-book.html'
@@ -16,10 +11,11 @@ export class NeedBookComponent {
   bookBuy = false;
   bookExchange = true;
   bookName: string;
-  bookISBN: number;
+  bookISBN: any;
   bookPrice: number;
-  currentIndex:number;
-  currentEdit = false;
+  currentIndex:any; //for getting the current index of the book that the user is editting right now. 
+  currentEdit = false; //if currentEdit is false, then addBook function will add a new entry, if it's true, then addbook will modify existing entry.
+  //below is hardcoded fake data for testing purpose only
   ownedBooks = [{isbn:1931283412831,name:"Conception of Mind",buy:true,exchange:true, price: 21},
 				{isbn:1838407937423,name:"Calculus Fundamentals 101",buy:true,exchange:false, price: 34},
 				{isbn:9534241410034,name:"Art History and Man Kind 221",buy:false,exchange:true}
@@ -30,8 +26,6 @@ export class NeedBookComponent {
     public events: Events,
     public alertCtrl: AlertController
   	) {
-    console.log('Hello RegisterComponent Component');
-    this.text = 'Hello World';
   }
 
 
@@ -41,13 +35,16 @@ closeModal(){
 	console.log('clicked on closeModal function');
 }
 
-
+//ADD ENTRY OR MODIFY CURRENT ENTRY BASED ON THE BOOLEAN VARIABLE 
 addBook(){
 	if(!this.bookISBN || !this.bookName){
 		this.showAlert('you are missing either the ISBN or the name');
 	}
 	else if(!this.bookExchange && !this.bookBuy){
 		this.showAlert('Please select at least one option for handling your book');
+	}
+	else if(this.bookISBN.toString().length || Number.isInteger(this.bookISBN) == false ){
+		this.showAlert('Invalid ISBN number');
 	}
 	else{
 		var newBookObj = {
@@ -76,9 +73,9 @@ deleteBook(bookInfo){
 	console.log("bookInfo",bookInfo);
 
 	for(var i in this.ownedBooks){
-
 		if(this.ownedBooks[i].isbn == bookInfo.isbn){
-			this.ownedBooks.splice(Number(i),1);
+			console.log("hii",i);
+			this.ownedBooks.splice(parseInt(i),1);
 		}
 	}
 }
@@ -96,6 +93,7 @@ showAlert(alertMessage){
 	alertCtrl.present();
 }
 
+//POP CONFIRMATION OF DELETION
 confirmDeletion(bookInfo){
 	let alertCtrl = this.alertCtrl.create({
 		title: "are you sure you want to delete this entry?",
@@ -116,7 +114,6 @@ confirmDeletion(bookInfo){
 	alertCtrl.present();
 }
 
-
 editBook(bookInfo){
 	this.currentEdit = true;
 	this.bookBuy = bookInfo.buy;
@@ -126,8 +123,7 @@ editBook(bookInfo){
 	this.bookName = bookInfo.name;
 	for(var i in this.ownedBooks){
 		if(this.ownedBooks[i].isbn == bookInfo.isbn){
-			this.currentIndex = Number(i);
-			console.log("what is this",this.currentIndex);
+			this.currentIndex = i
 	}
 	}
 }

@@ -77,7 +77,7 @@ deleteBook(bookInfo){
 
 	for(var i in this.ownedBooks){
 		if(this.ownedBooks[i].isbn == bookInfo.isbn){
-			this.ownedBooks.splice(i,1);
+			this.ownedBooks.splice(parseInt(i),1);
 		}
 	}
 }
@@ -124,7 +124,7 @@ editBook(bookInfo){
 	this.bookName = bookInfo.name;
 	for(var i in this.ownedBooks){
 		if(this.ownedBooks[i].isbn == bookInfo.isbn){
-			this.currentIndex = i
+			this.currentIndex = parseInt(i);
 	}
 	}
 }

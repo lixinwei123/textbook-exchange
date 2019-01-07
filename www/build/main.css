@@ -25679,16 +25679,11 @@ ion-navbar.toolbar {
   background-size: cover;
 }
 
-need-book ion-card {
-  height: 86%;
-  width: 79% !important;
-  margin: auto !important;
-  position: relative;
-  top: 10vh;
+need-book ion-content {
   opacity: 0.9;
 }
 
-need-book ion-card h1 {
+need-book ion-content h1 {
   text-align: center;
   margin-top: 1.2rem !important;
   margin-left: 3rem !important;
@@ -25720,16 +25715,11 @@ need-book .create-button {
   color: #3261ad !important;
 }
 
-own-book ion-card {
-  height: 86%;
-  width: 79% !important;
-  margin: auto !important;
-  position: relative;
-  top: 10vh;
+own-book ion-content {
   opacity: 0.9;
 }
 
-own-book ion-card h1 {
+own-book ion-content h1 {
   text-align: center;
   margin-top: 1.2rem !important;
   margin-left: 3rem !important;
@@ -25761,17 +25751,12 @@ own-book .create-button {
   color: #3261ad !important;
 }
 
-register ion-card {
-  height: 86%;
-  width: 63% !important;
-  margin: auto !important;
-  position: relative;
-  top: 10vh;
+register ion-content {
   opacity: 0.9;
   background-color: black !important;
 }
 
-register ion-card h1 {
+register ion-content h1 {
   text-align: center;
   color: white !important;
   margin-top: 1.2rem !important;
