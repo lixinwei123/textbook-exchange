@@ -25679,6 +25679,11 @@ ion-navbar.toolbar {
   background-size: cover;
 }
 
+.background-photo-1 {
+  background-image: url("../assets/imgs/textbookPhoto.jpg");
+  background-size: cover;
+}
+
 need-book ion-content {
   opacity: 0.9;
 }

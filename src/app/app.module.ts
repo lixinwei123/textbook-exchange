@@ -9,6 +9,10 @@ import { HomePage } from '../pages/home/home';
 import {RegisterComponent} from '../components/register/register';
 import {OwnBookComponent} from '../components/own-book/own-book';
 import {NeedBookComponent} from '../components/need-book/need-book';
+// import { HTTP } from '@ionic-native/http';
+// import { HttpClient } from '@angular/common/http';
+//import { HttpModule } from '@angular/http';
+import { HttpClientModule } from "@angular/common/http"; 
 // import {RegisterPage} from '../pages/register/register';
 // import {LoginPage} from '../pages/login/login';
 @NgModule({
@@ -23,6 +27,7 @@ import {NeedBookComponent} from '../components/need-book/need-book';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule
     
   ],
   bootstrap: [IonicApp],
@@ -38,6 +43,7 @@ import {NeedBookComponent} from '../components/need-book/need-book';
   providers: [
     StatusBar,
     SplashScreen,
+    // HttpClient,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -1,6 +1,10 @@
 const express = require('express');
 const mysql = require('mysql');
 const app = express();
+const bodyParser = require('body-parser');
+const logger = require('morgan');
+const methodOverride = require('method-override')
+const cors = require('cors');
 //Create connection
 const db = mysql.createConnection({
 	host : 'localhost',
@@ -8,6 +12,12 @@ const db = mysql.createConnection({
 	password: '680927',
 	database: 'textbook'
 });
+
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(methodOverride());
+app.use(cors());
+
 //connect
 db.connect((err) => {
 	if(err) {
@@ -23,6 +33,11 @@ app.get('/createpoststable', (req, res) => {
 		// if(err) throw err;
 		res.send('Posts table created...');
 	});
+});
+
+app.get('/posts', function(req, res) {
+    console.log("posts!");
+    res.json({"success": true});
 });
 //Create DB
 // app.get('/createdb', (req,res) => {

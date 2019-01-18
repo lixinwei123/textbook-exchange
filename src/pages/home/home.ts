@@ -1,14 +1,25 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Injectable } from '@angular/core';
+import { HttpClient} from '@angular/common/http';
+
+// import { HttpClientModule } from "@angular/common/http"; 
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+@Injectable()
 export class HomePage {
+	req: any;
+  constructor(public navCtrl: NavController, public http: HttpClient) {
 
-  constructor(public navCtrl: NavController) {
 
   }
-
+  makeRequest(){
+   this.req = this.http.get('http://cde0c2f7.ngrok.io/posts');
+   this.req.subscribe(data => {
+   	console.log("data",data);
+   })
+  }
 }
