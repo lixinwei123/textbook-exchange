@@ -19,11 +19,11 @@
 	<p> don't have an account yet? <a style = "color:#1c3d2b;" (click) = "goToRegister()"><u><b>register</b></u></a> now!</p>
 	<ion-item>
 	<ion-label floating>Email Address</ion-label>
-	<ion-input type="text" ></ion-input>
+	<ion-input type="text" [(ngModel)] = "email"></ion-input>
 	</ion-item>
 	<ion-item style = "margin-bottom:3rem;">
 	<ion-label floating >Password</ion-label>
-	<ion-input type="password" ></ion-input>
+	<ion-input type="password" [(ngModel)] = "password"></ion-input>
 	</ion-item>
 	<div style = "text-align:center;margin-bottom:3rem;"><button ion-button  color = "secondary" (click) = "login()">login</button></div>
 </ion-card>

@@ -48,7 +48,19 @@ app.get('/posts', function(req, res) {
 // 		res.send("database created ...");
 // 	} );
 // });
-
+app.post('/createUser', function(req, res) {
+    console.log("user info", req);
+    var user_id = req.body.uid;
+    var firstname = req.body.firstname;
+    var lastname = req.body.lastname;
+    var email = req.body.email;
+    let sql = `INSERT into user VALUES('${user_id}','${email}','${firstname}','${lastname}');`;
+    console.log("sql",sql);
+	db.query(sql, (err, result) => {
+		console.log("result",result,"error",err)
+	});
+	res.send('user successful created!');
+});
 app.listen('3000', () => {
 	console.log("Serer started on port 3000");
 });

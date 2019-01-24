@@ -17,7 +17,7 @@ export class HomePage {
 
   }
   makeRequest(){
-   this.req = this.http.get('http://cde0c2f7.ngrok.io/posts');
+   this.req = this.http.get('http://f16190f8.ngrok.io/posts');
    this.req.subscribe(data => {
    	console.log("data",data);
    })

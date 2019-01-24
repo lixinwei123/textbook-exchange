@@ -15,6 +15,10 @@ import {NeedBookComponent} from '../components/need-book/need-book';
 import { HttpClientModule } from "@angular/common/http"; 
 // import {RegisterPage} from '../pages/register/register';
 // import {LoginPage} from '../pages/login/login';
+import {AngularFireModule} from "@angular/fire";
+import {AngularFireAuthModule} from "@angular/fire/auth";
+import {FIREBASE_CONFIG} from './app.firebase.config';
+import { RestProvider } from '../providers/rest/rest';
 @NgModule({
   declarations: [
     MyApp,
@@ -27,7 +31,9 @@ import { HttpClientModule } from "@angular/common/http";
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireAuthModule
     
   ],
   bootstrap: [IonicApp],
@@ -44,7 +50,8 @@ import { HttpClientModule } from "@angular/common/http";
     StatusBar,
     SplashScreen,
     // HttpClient,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RestProvider
   ]
 })
 export class AppModule {}

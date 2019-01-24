@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController,ActionSheetController, Events} from 'ionic-angular';
 import {RegisterComponent} from '../../components/register/register';
+import {AngularFireAuth} from "@angular/fire/auth";
 // import {RegisterPage} from '../pages/register/register';
 /**
  * Generated class for the LoginPage page.
@@ -16,7 +17,10 @@ import {RegisterComponent} from '../../components/register/register';
 })
 export class LoginPage {
 displayLogin = true;
+password: string;
+email: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events,
+    public afAuth: AngularFireAuth,
   	public modalCtrl: ModalController,
   	public actionSheet: ActionSheetController) {
   	this.events.subscribe('showLoginCard', () =>{
@@ -36,8 +40,18 @@ goToRegister(){
 	this.displayLogin = false;
 }
 
-login(){
-	this.navCtrl.setRoot('OwnedBooksPage');
+async login(){
+  try{
+        this.afAuth.auth.signInWithEmailAndPassword(this.email,this.password).then(res =>{
+        console.log("Logged in ha",res.user);
+      if(res.user.uid){
+         this.navCtrl.setRoot("OwnedBooksPage");
+      }
+      });
+  }
+  catch  (e) {
+    console.log(e)
+  }
 }
 
 }
