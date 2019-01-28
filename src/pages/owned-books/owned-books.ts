@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,Events,ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Events,ModalController ,MenuController} from 'ionic-angular';
 import {NeedBookComponent} from '../../components/need-book/need-book';
 import {OwnBookComponent} from '../../components/own-book/own-book';
+
+
 /**
  * Generated class for the OwnedBooksPage page.
  *
@@ -20,11 +22,17 @@ export class OwnedBooksPage {
   constructor(public navCtrl: NavController, 
   	public navParams: NavParams,
   	public events:Events,
-  	 public modalCtrl: ModalController) {
+  	 public modalCtrl: ModalController,
+     private menuCtrl: MenuController,) {
   	 this.events.subscribe('showChoices', () =>{
   		console.log("this got triggered");
   		this.mainChoice = true;
   	});
+  }
+
+ openFirst() {
+    this.menuCtrl.enable(true, 'side-menu');
+    this.menuCtrl.open('side-menu');
   }
 
   ionViewDidLoad() {
@@ -41,4 +49,6 @@ export class OwnedBooksPage {
   	 this.mainChoice = false;
   	 	modal.present();
   }
+
+
 }

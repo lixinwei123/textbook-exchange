@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController,ActionSheetController, Events} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController,ActionSheetController, Events, ToastController} from 'ionic-angular';
 import {RegisterComponent} from '../../components/register/register';
 import {AngularFireAuth} from "@angular/fire/auth";
 // import {RegisterPage} from '../pages/register/register';
@@ -20,6 +20,7 @@ displayLogin = true;
 password: string;
 email: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events,
+    public toast: ToastController,
     public afAuth: AngularFireAuth,
   	public modalCtrl: ModalController,
   	public actionSheet: ActionSheetController) {
@@ -32,6 +33,19 @@ email: string;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+    this.afAuth.authState.subscribe(data => {
+      if(data.email){
+       this.navCtrl.setRoot("OwnedBooksPage");
+        this.toast.create({
+        message: "welcome to textbookexchange :) " + data.email,
+        duration: 6000
+      }).present();
+      }
+     else{
+       console.log("no one logged in yet");
+     }
+    });
+    
   }
 
 goToRegister(){

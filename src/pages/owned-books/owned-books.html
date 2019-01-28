@@ -13,7 +13,28 @@
 </ion-header> -->
 
 
-<ion-content padding class = "background-photo">
+<ion-content padding class = "background-photo" #content>
+    <ion-buttons left >
+      <button ion-button icon-only menuToggle transparent>
+        <ion-icon name='menu'></ion-icon>
+      </button>
+    </ion-buttons>
+<!--   <ion-menu side="start" id="side-menu" [content] = "content" autoHide = "false" type = "overlay">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title >Dash Board</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item (click) = "logout();">log out bitch</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu> -->
 <div *ngIf = "mainChoice">
 <h1 class = "header-info">do you wish to register the books you owned or the books you need?</h1>
 <ion-grid class = "need-or-sell">

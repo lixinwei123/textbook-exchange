@@ -67,7 +67,7 @@ finishRegistration(){
   }
   else{
 
-  var result = this.afAuth.auth.createUserWithEmailAndPassword(this.email,this.password).then (res =>{
+  var result = this.afAuth.auth.createUserWithEmailAndPassword(this.email,this.password).then(res =>{
      var usrInfo = {
      uid: res.user.uid,
      email:this.email,
@@ -80,10 +80,14 @@ finishRegistration(){
     },
     (err) => {
       console.log("error",err);
-    }
+    },
     );
-  })
-  this.closeModal();
+      this.closeModal()
+  },
+    fail =>{
+      this.alertError("invalid information or this email has already been used")
+    }
+  );
   }
 }
 

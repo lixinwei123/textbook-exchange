@@ -9,6 +9,8 @@ import { HomePage } from '../pages/home/home';
 import {RegisterComponent} from '../components/register/register';
 import {OwnBookComponent} from '../components/own-book/own-book';
 import {NeedBookComponent} from '../components/need-book/need-book';
+import {MenuComponent} from '../components/menu/menu';
+import {LoginPage} from "../pages/login/login";
 // import { HTTP } from '@ionic-native/http';
 // import { HttpClient } from '@angular/common/http';
 //import { HttpModule } from '@angular/http';
@@ -25,7 +27,8 @@ import { RestProvider } from '../providers/rest/rest';
     HomePage,
     RegisterComponent,
     OwnBookComponent,
-    NeedBookComponent
+    NeedBookComponent,
+    MenuComponent
     // RegisterPage
   ],
   imports: [
@@ -51,7 +54,7 @@ import { RestProvider } from '../providers/rest/rest';
     SplashScreen,
     // HttpClient,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider
+    RestProvider,
   ]
 })
 export class AppModule {}
