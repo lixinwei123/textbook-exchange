@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController,ActionSheetController, Events, ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController,ActionSheetController, Events, ToastController,AlertController} from 'ionic-angular';
 import {RegisterComponent} from '../../components/register/register';
 import {AngularFireAuth} from "@angular/fire/auth";
 // import {RegisterPage} from '../pages/register/register';
@@ -23,7 +23,8 @@ email: string;
     public toast: ToastController,
     public afAuth: AngularFireAuth,
   	public modalCtrl: ModalController,
-  	public actionSheet: ActionSheetController) {
+  	public actionSheet: ActionSheetController,
+    public alertCtrl: AlertController) {
   	this.events.subscribe('showLoginCard', () =>{
   		console.log("this got triggered");
   		this.displayLogin = true;
@@ -54,6 +55,14 @@ goToRegister(){
 	this.displayLogin = false;
 }
 
+alertError(error) {
+  var alert = this.alertCtrl.create(
+      {
+        title: error
+      }
+    )
+  alert.present();
+}
 async login(){
   try{
         this.afAuth.auth.signInWithEmailAndPassword(this.email,this.password).then(res =>{
@@ -61,7 +70,11 @@ async login(){
       if(res.user.uid){
          this.navCtrl.setRoot("OwnedBooksPage");
       }
-      });
+      },
+      fail =>{
+        this.alertError("invalid login information, wrong password or email?")
+      }
+      );
   }
   catch  (e) {
     console.log(e)
