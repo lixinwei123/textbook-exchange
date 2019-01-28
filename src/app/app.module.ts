@@ -21,6 +21,7 @@ import {AngularFireModule} from "@angular/fire";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import {FIREBASE_CONFIG} from './app.firebase.config';
 import { RestProvider } from '../providers/rest/rest';
+//import { Database } from '@firebase/database';
 @NgModule({
   declarations: [
     MyApp,
@@ -36,7 +37,8 @@ import { RestProvider } from '../providers/rest/rest';
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    //Database
     
   ],
   bootstrap: [IonicApp],

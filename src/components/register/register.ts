@@ -4,6 +4,7 @@ import {AngularFireModule} from "@angular/fire";
 import {AngularFireAuth} from "@angular/fire/auth";
 import { Injectable } from '@angular/core';
 import {RestProvider} from "../../providers/rest/rest";
+//import { Database } from 'firebase/database';
 /**
  * Generated class for the RegisterComponent component.
  *
@@ -52,22 +53,33 @@ alertError(error) {
   alert.present();
 }
 finishRegistration(){
+  //var database = Database.database();
+  //var ref = database.ref("ID");
+  //ref.on('ID', this.getID, this.err);
+
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   if (this.password != this.passwordC){
-    this.alertError("passwords do not match");
+    this.alertError("Passwords do not match.");
   }
   else if (this.email != this.emailC){
-    this.alertError("email do not match");
+    this.alertError("Emails do not match.");
   }
   else if(this.password.length < 7){
-    this.alertError("password must be 6 characters long");
+    this.alertError("The password should be at least 7 characters long.");
   }
   else if (re.test(String(this.email).toLowerCase()) == false){
     this.alertError("bad email");
   }
+  else if (this.firstname == "")
+  {
+    this.alertError("Please enter your first name.")
+  }
+    else if (this.lastname == "")
+  {
+    this.alertError("Please enter your last name.")
+  }
   else{
-
-  var result = this.afAuth.auth.createUserWithEmailAndPassword(this.email,this.password).then(res =>{
+  var result = this.afAuth.auth.createUserWithEmailAndPassword(this.email,this.password).then (res =>{
      var usrInfo = {
      uid: res.user.uid,
      email:this.email,
@@ -81,6 +93,9 @@ finishRegistration(){
     (err) => {
       console.log("error",err);
     },
+    //(err) => {
+    //  console.log("error",err);
+    //}
     );
       this.closeModal()
   },
@@ -90,7 +105,22 @@ finishRegistration(){
   );
   }
 }
-
+//getID(data){
+  //console.log(ID.val());
+//  var ID = data.val();
+//  var keys = Object.keys(ID);
+//  console.log(keys);
+//  for (var i = 0; i < keys.length; i++)
+//  {
+//    var k = keys[i];
+//    var email = ID[k].email;
+//    console.log(email);
+//  }
+//}
+//err(err){
+//  console.log('Error');
+//  console.log(err);
+//}
 
 //   makeRequest(uid){
 //     var httpOptions = {
