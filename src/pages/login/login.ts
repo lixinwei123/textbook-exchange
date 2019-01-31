@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController,ActionSheetController, Events, ToastController,AlertController} from 'ionic-angular';
 import {RegisterComponent} from '../../components/register/register';
 import {AngularFireAuth} from "@angular/fire/auth";
+import {UserinfoProvider} from "../../providers/userinfo/userinfo";
 // import {RegisterPage} from '../pages/register/register';
 /**
  * Generated class for the LoginPage page.
@@ -24,7 +25,8 @@ email: string;
     public afAuth: AngularFireAuth,
   	public modalCtrl: ModalController,
   	public actionSheet: ActionSheetController,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    private usrInfo: UserinfoProvider) {
   	this.events.subscribe('showLoginCard', () =>{
   		console.log("this got triggered");
   		this.displayLogin = true;
@@ -36,6 +38,8 @@ email: string;
     console.log('ionViewDidLoad LoginPage');
     this.afAuth.authState.subscribe(data => {
       if(data.email){
+        this.usrInfo.setUsrId(data.uid);
+        this.usrInfo.getOwnedBooks();
        this.navCtrl.setRoot("OwnedBooksPage");
         this.toast.create({
         message: "welcome to textbookexchange :) " + data.email,
@@ -78,6 +82,7 @@ async login(){
   }
   catch  (e) {
     console.log(e)
+    this.alertError("invalid login information, wrong password or email?")
   }
 }
 

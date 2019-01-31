@@ -21,6 +21,7 @@ import {AngularFireModule} from "@angular/fire";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import {FIREBASE_CONFIG} from './app.firebase.config';
 import { RestProvider } from '../providers/rest/rest';
+import { UserinfoProvider } from '../providers/userinfo/userinfo';
 //import { Database } from '@firebase/database';
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { RestProvider } from '../providers/rest/rest';
     // HttpClient,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider,
+    UserinfoProvider,
   ]
 })
 export class AppModule {}

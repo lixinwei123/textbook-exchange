@@ -61,6 +61,49 @@ app.post('/createUser', function(req, res) {
 	});
 	res.send('user successful created!');
 });
+
+app.post('/postOwnBook', function(req,res){
+	var user_id = req.body.uid;
+	var isbn = req.body.isbn;
+	var method = parseInt(req.body.method);
+	var price = parseInt(req.body.price);
+	var title = req.body.bName;
+	let sql = `INSERT into OWNED_BOOKS VALUES('${user_id}','${isbn}','${method}','${price}');`;
+	let sql2 = `INSERT into BOOK_INFO VALUES('${isbn}','${title}');`
+	console.log("sql",sql);
+	db.query(sql, (err, result) => {
+		console.log("result",result,"error",err)
+	});
+	db.query(sql2, (err, result) => {
+		console.log("result",result,"error",err)
+	});
+	res.send('OwnBook successful created!');
+});
+
+app.post('/postNeedBook', function(req,res){
+	var user_id = req.body.uid;
+	var isbn = req.body.isbn;
+	var method = req.body.method;
+	var price = req.body.price;
+	var title = req.body.bName;
+	let sql = `INSERT into NEED_BOOKS VALUES('${user_id}','${isbn}','${method}','${price}');`
+	console.log("sql",sql);
+	db.query(sql, (err, result) => {
+		console.log("result",result,"error",err)
+	});
+	res.send('needbook successful created!');
+});
+
+app.post('/getOwnedBooks', function(req,res){
+	var user_id = req.body.uid;
+	let sql = `SELECT * FROM OWNED_BOOKS WHERE usr_id = '${user_id}';`
+	console.log("sql",sql);
+	db.query(sql, (err, result) => {
+		console.log("result",result,"error",err)
+		res.send(result);
+	});
+});
+
 app.listen('3000', () => {
 	console.log("Serer started on port 3000");
 });

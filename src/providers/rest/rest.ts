@@ -9,15 +9,15 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class RestProvider {
-  apiUrl = "http://f16190f8.ngrok.io"
+  apiUrl = "http://eb424934.ngrok.io"
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
   }
 
 
- addUser(uObj) {
+ postRequest(uObj,method) {
   return new Promise((resolve, reject) => {
-     this.http.post(this.apiUrl+'/createUser', uObj, {responseType: 'text'})
+     this.http.post(this.apiUrl+ method, uObj, {responseType: 'text'})
       .subscribe(res => {
         resolve(res);
       }, (err) => {
@@ -26,4 +26,5 @@ export class RestProvider {
   });
 }
 
+getRequest(uObj,method){}
 }

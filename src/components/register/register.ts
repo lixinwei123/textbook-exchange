@@ -19,13 +19,13 @@ import {RestProvider} from "../../providers/rest/rest";
 @Injectable()
 export class RegisterComponent {
 
-  text: string;
-  password: string;
-  email: string;
-  passwordC: string;
-  emailC: string;
-  firstname: string;
-  lastname:string;
+  text = "";
+  password = "";
+  email = "";
+  passwordC = "";
+  emailC = "";
+  firstname = "";
+  lastname = "";
   constructor(public navCtrl: NavController,
    public modalCtrl: ModalController, 
    public viewCtrl: ViewController,
@@ -87,7 +87,7 @@ finishRegistration(){
      lastname: this.lastname
    }
        console.log("registered",res.user.uid)
-    this.restAPI.addUser(usrInfo).then(( result) =>{
+    this.restAPI.postRequest(usrInfo,'/createUser').then(( result) =>{
       console.log(result);
     },
     (err) => {

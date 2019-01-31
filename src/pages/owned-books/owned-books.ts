@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,Events,ModalController ,MenuController} from 'ionic-angular';
 import {NeedBookComponent} from '../../components/need-book/need-book';
 import {OwnBookComponent} from '../../components/own-book/own-book';
-
+import {UserinfoProvider} from "../../providers/userinfo/userinfo";
 
 /**
  * Generated class for the OwnedBooksPage page.
@@ -23,11 +23,13 @@ export class OwnedBooksPage {
   	public navParams: NavParams,
   	public events:Events,
   	 public modalCtrl: ModalController,
-     private menuCtrl: MenuController,) {
+     private menuCtrl: MenuController,
+     private usrInfo: UserinfoProvider) {
   	 this.events.subscribe('showChoices', () =>{
   		console.log("this got triggered");
   		this.mainChoice = true;
   	});
+      this.usrInfo.subData();
   }
 
  openFirst() {

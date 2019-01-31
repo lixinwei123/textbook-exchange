@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController,ActionSheetController, ViewController, Events, AlertController} from 'ionic-angular';
+import {RestProvider} from "../../providers/rest/rest";
+import {UserinfoProvider} from "../../providers/userinfo/userinfo";
 /**
  * Generated class for the RegisterComponent component.
  *
@@ -28,9 +30,12 @@ export class OwnBookComponent {
    public modalCtrl: ModalController, 
    public viewCtrl: ViewController,
     public events: Events,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    private restAPI: RestProvider,
+    private usrInfo: UserinfoProvider
   	) {
     console.log('Hello RegisterComponent Component');
+    this.usrInfo.subData();
     this.text = 'Hello World';
   }
 
@@ -50,12 +55,33 @@ addBook(){
 		this.showAlert('Please select at least one option for handling your book');
 	}
 	else{
+		var method;
+		if (this.bookSell && this.bookExchange){
+			 method = 3
+		}
+		else if (this.bookSell){
+			method = 2
+		}
+		else{
+			method = 1
+		}
 		var newBookObj = {
 			isbn:this.bookISBN,
 			name:this.bookName,
-			sell:this.bookSell,
-			exchange:this.bookExchange,
+			sell: this.bookSell,
+			exchange: this.bookExchange,
 			price: this.bookPrice
+		}
+		console.log("foobar",this.usrInfo.getUsrId());
+		if(!this.bookSell){
+			this.bookPrice = 0;
+		}
+		var apiObj = {
+			isbn:this.bookISBN,
+			bName:this.bookName,
+			method: method,
+			price: this.bookPrice,
+			uid: this.usrInfo.getUsrId()
 		}
 		if(this.currentEdit){
 			this.ownedBooks[this.currentIndex] = newBookObj;
@@ -63,12 +89,20 @@ addBook(){
 		}
 		else{
 			this.ownedBooks.push(newBookObj);
+			    this.restAPI.postRequest(apiObj,'/postOwnBook').then(( result) =>{
+			      console.log(result);
+			    },
+			    (err) => {
+			      console.log("error",err);
+			    }
+			    )
 		}
 		this.bookISBN = null;
 		this.bookName = "";
 		this.bookExchange = true;
 		this.bookSell = false;
 		this.bookPrice = null;
+
 	}
 }
 
