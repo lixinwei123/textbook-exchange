@@ -39,7 +39,8 @@ bookArray : any;
     this.rest.postRequest(obj, "/getOwnedBooks").then(
       success => {
                 console.log("success",success);
-        success = JSON.parse(success);
+        // success = JSON.stringify(success);
+        success = JSON.parse(success.toString())
         var bookArr = [];
         for(var i in success){
             var price, sell, exchange;

@@ -64,6 +64,9 @@ addBook(){
 	else if(!this.bookExchange && !this.bookSell){
 		this.showAlert('Please select at least one option for handling your book');
 	}
+	else if (this.bookSell == true && (this.bookPrice == null || this.bookPrice == 0) ){
+			this.showAlert('Invalid price, please enter a valid price');
+	}
 	else{
 		var method;
 		if (this.bookSell && this.bookExchange){
