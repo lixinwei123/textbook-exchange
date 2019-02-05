@@ -65,7 +65,10 @@ addBook(){
 		this.showAlert('Please select at least one option for handling your book');
 	}
 	else if (this.bookSell == true && (this.bookPrice == null || this.bookPrice == 0) ){
-			this.showAlert('Invalid price, please enter a valid price');
+		this.showAlert('Invalid price, please enter a valid price');
+	}
+	else if(String(this.bookISBN).length != 13){
+		this.showAlert("Invalid ISBN number");
 	}
 	else{
 		var method;
