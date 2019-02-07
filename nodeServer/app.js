@@ -68,7 +68,7 @@ app.post('/postOwnBook', function(req,res){
 	var method = parseInt(req.body.method);
 	var price = parseInt(req.body.price);
 	var title = req.body.bName;
-	let sql = `INSERT into OWNED_BOOKS VALUES('${user_id}','${isbn}','${method}','${price}');`;
+	let sql = `INSERT into OWNED_BOOKS VALUES('${user_id}','${isbn}','${method}','${price}','${title}');`;
 	let sql2 = `INSERT into BOOK_INFO VALUES('${isbn}','${title}');`
 	console.log("sql",sql);
 	db.query(sql, (err, result) => {
@@ -79,14 +79,14 @@ app.post('/postOwnBook', function(req,res){
 	});
 	res.send('OwnBook successful created!');
 });
-
+//VY AND TRUNG, MODIFY THIS FUNCTION THAT I COPIED:
 app.post('/postNeedBook', function(req,res){
 	var user_id = req.body.uid;
 	var isbn = req.body.isbn;
 	var method = req.body.method;
 	var price = req.body.price;
 	var title = req.body.bName;
-	let sql = `INSERT into NEED_BOOKS VALUES('${user_id}','${isbn}','${method}','${price}');`
+	let sql = `INSERT into NEED_BOOKS VALUES('${user_id}','${isbn}','${method}','${price}','${title}');`;
 	console.log("sql",sql);
 	db.query(sql, (err, result) => {
 		console.log("result",result,"error",err)
@@ -102,6 +102,32 @@ app.post('/getOwnedBooks', function(req,res){
 		console.log("result",result,"error",err)
 		res.send(result);
 	});
+});
+
+app.post('/editBook', function(req,res){
+	var user_id = req.body.uid;
+	var isbn = req.body.isbn;
+	var method = req.body.method;
+	var price = req.body.price;
+	var title = req.body.bName;
+	var oldisbn = req.body.oldisbn
+	let sql = `UPDATE OWNED_BOOKS SET isbn = '${isbn}', method = '${method}', price = '${price}', title = '${title}' WHERE usr_id = '${user_id}' and isbn = '${oldisbn}';`;
+	console.log("sql",sql);
+	db.query(sql, (err, result) => {
+		console.log("result",result,"error",err)
+	});
+	res.send('edited book successfully');
+});
+
+app.post('/deleteBook', function(req,res){
+	var user_id = req.body.uid;
+	var isbn = req.body.isbn;
+	let sql = `DELETE FROM OWNED_BOOKS WHERE isbn = '${isbn}' and usr_id = '${user_id}';`;
+	console.log("sql",sql);
+	db.query(sql, (err, result) => {
+		console.log("result",result,"error",err)
+	});
+	res.send('entry Deleted');
 });
 
 app.listen('3000', () => {

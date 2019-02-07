@@ -21,11 +21,14 @@ export class OwnBookComponent {
   bookISBN: number;
   bookPrice: number;
   currentIndex: number;
+  bookArray : any;
+  oldISBN: any;
   currentEdit = false;
-  ownedBooks = [{isbn:1931283412831,name:"Conception of Mind",sell:true,exchange:true,price:46},
-				{isbn:1838407937423,name:"Calculus Fundamentals 101",sell:true,exchange:false,price:57},
-				{isbn:9534241410034,name:"Art History and Man Kind 221",sell:false,exchange:true,price:88}
-  ];
+  // ownedBooks = [{isbn:1931283412831,name:"Conception of Mind",sell:true,exchange:true,price:46},
+		// 		{isbn:1838407937423,name:"Calculus Fundamentals 101",sell:true,exchange:false,price:57},
+		// 		{isbn:9534241410034,name:"Art History and Man Kind 221",sell:false,exchange:true,price:88}
+  // ];
+  ownedBooks: any;
   constructor(public navCtrl: NavController,
    public modalCtrl: ModalController, 
    public viewCtrl: ViewController,
@@ -35,10 +38,17 @@ export class OwnBookComponent {
     private usrInfo: UserinfoProvider
   	) {
     console.log('Hello RegisterComponent Component');
-    this.usrInfo.subData();
     this.text = 'Hello World';
+    this.getBookArr();
   }
 
+
+getBookArr(){
+	this.ownedBooks = this.usrInfo.getBookArray();
+	if(this.ownedBooks.length <= 0){
+		setTimeout(bad => {this.getBookArr()}, 1000)
+	}
+}
 
 closeModal(){
 	this.viewCtrl.dismiss();
@@ -53,6 +63,9 @@ addBook(){
 	}
 	else if(!this.bookExchange && !this.bookSell){
 		this.showAlert('Please select at least one option for handling your book');
+	}
+	else if (this.bookSell == true && (this.bookPrice == null || this.bookPrice == 0) ){
+			this.showAlert('Invalid price, please enter a valid price');
 	}
 	else{
 		var method;
@@ -83,19 +96,17 @@ addBook(){
 			price: this.bookPrice,
 			uid: this.usrInfo.getUsrId()
 		}
+
 		if(this.currentEdit){
+			apiObj["oldisbn"] = this.oldISBN;
+			console.log("foooo",this.oldISBN);
 			this.ownedBooks[this.currentIndex] = newBookObj;
+			this.postReq(apiObj,'/editBook')
 			this.currentEdit = false;
 		}
 		else{
 			this.ownedBooks.push(newBookObj);
-			    this.restAPI.postRequest(apiObj,'/postOwnBook').then(( result) =>{
-			      console.log(result);
-			    },
-			    (err) => {
-			      console.log("error",err);
-			    }
-			    )
+			this.postReq(apiObj,'/postOwnBook')
 		}
 		this.bookISBN = null;
 		this.bookName = "";
@@ -112,6 +123,11 @@ deleteBook(bookInfo){
 	for(var i in this.ownedBooks){
 		if(this.ownedBooks[i].isbn == bookInfo.isbn){
 			this.ownedBooks.splice(parseInt(i),1);
+			var obj = {
+				isbn: bookInfo.isbn,
+				uid: this.usrInfo.getUsrId()
+			}
+				this.postReq(obj,'/deleteBook')
 		}
 	}
 }
@@ -148,7 +164,15 @@ confirmDeletion(bookInfo){
 	});
 	alertCtrl.present();
 }
-
+postReq(obj, url){
+	 this.restAPI.postRequest(obj,url).then(( result) =>{
+	      console.log(result);
+	    },
+	    (err) => {
+	      console.log("error",err);
+	    }
+	)
+}
 editBook(bookInfo){
 	this.currentEdit = true;
 	this.bookSell = bookInfo.sell;
@@ -158,6 +182,7 @@ editBook(bookInfo){
 	this.bookName = bookInfo.name;
 	for(var i in this.ownedBooks){
 		if(this.ownedBooks[i].isbn == bookInfo.isbn){
+			this.oldISBN = this.ownedBooks[i].isbn;
 			this.currentIndex = parseInt(i);
 	}
 	}
