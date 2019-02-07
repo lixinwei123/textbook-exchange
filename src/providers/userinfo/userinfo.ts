@@ -12,6 +12,7 @@ import {RestProvider} from "../rest/rest";
 export class UserinfoProvider {
 uid : any;
 bookArray : any;
+neededBookArray : any;
   constructor(public http: HttpClient,
   	private afAuth: AngularFireAuth,
     private rest: RestProvider) {
@@ -24,6 +25,7 @@ bookArray : any;
       	this.setUsrId(data.uid);
         console.log("ok done");
         this.getOwnedBooks();
+        this.getNeededBooks();
       }
      else{
        console.log("no one logged in yet");
@@ -39,8 +41,8 @@ bookArray : any;
     this.rest.postRequest(obj, "/getOwnedBooks").then(
       success => {
                 console.log("success",success);
-        // success = JSON.stringify(success);
-        success = JSON.parse(success.toString())
+        //success = JSON.stringify(success);
+        success = JSON.parse(success.toString());
         var bookArr = [];
         for(var i in success){
             var price, sell, exchange;
@@ -80,6 +82,55 @@ bookArray : any;
       }
       );
   }
+
+  getNeededBooks(){
+    this.neededBookArray = [];
+    var obj = {
+      uid: this.getUsrId()
+    }
+    this.rest.postRequest(obj, "/getNeededBooks").then(
+      success => {
+        console.log("success", success);
+        success = JSON.parse(success.toString());
+        var neededBookArr = [];
+        for (var i in success){
+          var price, buy, exchange;
+          if(success[i].PRICE == 0){
+            price = null;
+          }
+          else{
+            price = success[i].PRICE;
+          }
+          if(success[i].METHOD == 1){
+            buy = false;
+            exchange = true;
+          }
+          else if(success[i].METHOD == 2){
+            buy = true;
+            exchange = false;
+          }
+          else if(success[i].METHOD == 3){
+            buy = true;
+            exchange = true;
+          }
+          var bookObj = {
+            isbn: success[i].ISBN,
+            name: success[i].title,
+            price: price,
+            buy: buy,
+            exchange: exchange
+          };
+          neededBookArr.push(bookObj);
+        }
+        this.neededBookArray = neededBookArr
+        console.log("omg I know", neededBookArr)
+        return neededBookArr
+      },
+      fail =>{
+        console.log("fail");
+      }
+      );
+  }
   setUsrId(uid){
   	this.uid = uid
   }
@@ -90,5 +141,9 @@ bookArray : any;
 
   getBookArray(){
     return this.bookArray;
+  }
+
+  getNeededBookArray(){
+    return this.neededBookArray;
   }
 }

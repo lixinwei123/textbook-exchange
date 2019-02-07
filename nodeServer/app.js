@@ -9,15 +9,14 @@ const cors = require('cors');
 const db = mysql.createConnection({
 	host : 'localhost',
 	user : 'root',
-	password: '680927',
-	database: 'textbook'
+	password: 'Huuvy123',
+	database: 'Tutorial'
 });
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(cors());
-
 //connect
 db.connect((err) => {
 	if(err) {
@@ -27,13 +26,13 @@ db.connect((err) => {
 });
 
 //Create table
-app.get('/createpoststable', (req, res) => {
-	let sql = 'CREATE TABLE posts(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY (id))';
-	db.query(sql, (err, result) => {
-		// if(err) throw err;
-		res.send('Posts table created...');
-	});
-});
+// app.get('/createpoststable', (req, res) => {
+// 	let sql = 'CREATE TABLE posts(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY (id))';
+// 	db.query(sql, (err, result) => {
+// 		// if(err) throw err;
+// 		res.send('Posts table created...');
+// 	});
+// });
 
 app.get('/posts', function(req, res) {
     console.log("posts!");
@@ -54,7 +53,7 @@ app.post('/createUser', function(req, res) {
     var firstname = req.body.firstname;
     var lastname = req.body.lastname;
     var email = req.body.email;
-    let sql = `INSERT into user VALUES('${user_id}','${email}','${firstname}','${lastname}');`;
+    let sql = `INSERT into USER VALUES('${user_id}','${email}','${firstname}','${lastname}');`;
     console.log("sql",sql);
 	db.query(sql, (err, result) => {
 		console.log("result",result,"error",err)
@@ -83,15 +82,19 @@ app.post('/postOwnBook', function(req,res){
 app.post('/postNeedBook', function(req,res){
 	var user_id = req.body.uid;
 	var isbn = req.body.isbn;
-	var method = req.body.method;
-	var price = req.body.price;
+	var method = parseInt(req.body.method);
+	var price = parseInt(req.body.price);
 	var title = req.body.bName;
 	let sql = `INSERT into NEED_BOOKS VALUES('${user_id}','${isbn}','${method}','${price}','${title}');`;
+	let sql2 = `INSERT into BOOK_INFO VALUES('${isbn}','${title}');`
 	console.log("sql",sql);
 	db.query(sql, (err, result) => {
 		console.log("result",result,"error",err)
 	});
-	res.send('needbook successful created!');
+	db.query(sql2, (err, result) => {
+		console.log("result",result,"error",err)
+	});
+	res.send('NeedBook successful created!');
 });
 
 app.post('/getOwnedBooks', function(req,res){
@@ -100,6 +103,16 @@ app.post('/getOwnedBooks', function(req,res){
 	console.log("sql",sql);
 	db.query(sql, (err, result) => {
 		console.log("result",result,"error",err)
+		res.send(result);
+	});
+});
+
+app.post('/getNeededBooks', function(req,res){
+	var user_id = req.body.uid;
+	let sql = `SELECT * from NEED_BOOKS WHERE usr_id = '${user_id}';`
+	console.log("sql", sql);
+	db.query(sql, (err, result) => {
+		console.log("result", result, "error", err)
 		res.send(result);
 	});
 });
@@ -119,10 +132,36 @@ app.post('/editBook', function(req,res){
 	res.send('edited book successfully');
 });
 
+app.post('/editNeededBook', function(req,res){
+	var user_id = req.body.uid;
+	var isbn = req.body.isbn;
+	var method = req.body.method;
+	var price = req.body.price;
+	var title = req.body.bName;
+	var oldisbn = req.body.oldisbn
+	let sql = `UPDATE NEED_BOOKS SET isbn = '${isbn}', method = '${method}', price = '${price}', title = '${title}' WHERE usr_id = '${user_id}' and isbn = '${oldisbn}';`;
+	console.log("sql",sql);
+	db.query(sql, (err, result) => {
+		console.log("result",result,"error",err)
+	});
+	res.send('edited book successfully');
+});
+
 app.post('/deleteBook', function(req,res){
 	var user_id = req.body.uid;
 	var isbn = req.body.isbn;
 	let sql = `DELETE FROM OWNED_BOOKS WHERE isbn = '${isbn}' and usr_id = '${user_id}';`;
+	console.log("sql",sql);
+	db.query(sql, (err, result) => {
+		console.log("result",result,"error",err)
+	});
+	res.send('entry Deleted');
+});
+
+app.post('/deleteNeededBook', function(req,res){
+	var user_id = req.body.uid;
+	var isbn = req.body.isbn;
+	let sql = `DELETE FROM NEED_BOOKS WHERE isbn = '${isbn}' and usr_id = '${user_id}';`;
 	console.log("sql",sql);
 	db.query(sql, (err, result) => {
 		console.log("result",result,"error",err)
