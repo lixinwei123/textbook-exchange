@@ -1,0 +1,123 @@
+<!-- Generated template for the FindMatchComponent component -->
+<ion-content>
+<button ion-button icon-only (click) = "closeModal();" class = "close-button"><ion-icon name = "close"></ion-icon></button>
+	<h1>Exchange Offer(s):</h1>
+  <ion-list>
+  <ion-grid>
+		<ion-row style = "margin-top:1rem;">
+			<ion-col>
+				Name:
+			</ion-col>
+			<ion-col>
+				Email Address:
+			</ion-col>
+			<ion-col>
+				Title:
+			</ion-col>
+			<ion-col>
+				ISBN:
+			</ion-col>
+			<ion-col>
+				Your Book's Title:
+			</ion-col>
+			<ion-col>
+				Your Book's ISBN:
+			</ion-col>
+		</ion-row>
+		<ion-row *ngFor = "let exchanger of exchangerArray">
+			<ion-col>
+				{{exchanger.name}}
+			</ion-col>
+			<ion-col>
+				 {{exchanger.email}}
+			</ion-col>
+				<ion-col>
+				 {{exchanger.need_title}}
+			</ion-col>
+				<ion-col>
+				 {{exchanger.need_ISBN}}
+			</ion-col>
+				<ion-col>
+				 {{exchanger.owned_title}}
+			</ion-col>
+				<ion-col>
+				 {{exchanger.owned_ISBN}}
+			</ion-col>
+		</ion-row>
+  </ion-grid>
+  	<h2>Selling Offer(s):</h2>
+  <ion-grid>
+		<ion-row style = "margin-top:1rem;">
+			<ion-col>
+				Name:
+			</ion-col>
+			<ion-col>
+				Email Address:
+			</ion-col>
+			<ion-col>
+				Title:
+			</ion-col>
+			<ion-col>
+				ISBN:
+			</ion-col>
+			<ion-col>
+				Price Offered:
+			</ion-col>
+		</ion-row>
+		<ion-row *ngFor = "let seller of sellerArray">
+			<ion-col>
+				{{seller.name}}
+			</ion-col>
+			<ion-col>
+				{{seller.email}}
+			</ion-col>
+			<ion-col>
+				{{seller.need_title}}
+			</ion-col>
+			<ion-col>
+				{{seller.need_ISBN}}
+			</ion-col>
+			<ion-col>
+				{{seller.price}}
+			</ion-col>
+		</ion-row>
+  </ion-grid>
+   	<h3>Buying Offer(s):</h3>
+  <ion-grid>
+		<ion-row style = "margin-top:1rem;">
+			<ion-col>
+				Name:
+			</ion-col>
+			<ion-col>
+				Email Address:
+			</ion-col>
+			<ion-col>
+				Title:
+			</ion-col>
+			<ion-col>
+				ISBN:
+			</ion-col>
+			<ion-col>
+				Price Offered:
+			</ion-col>
+		</ion-row>
+		<ion-row *ngFor = "let buyer of buyerArray">
+			<ion-col>
+				{{buyer.name}}
+			</ion-col>
+			<ion-col>
+				{{buyer.email}}
+			</ion-col>
+			<ion-col>
+				{{buyer.owned_title}}
+			</ion-col>
+			<ion-col>
+				{{buyer.owned_ISBN}}
+			</ion-col>
+			<ion-col>
+				{{buyer.price}}
+			</ion-col>
+		</ion-row>
+  </ion-grid>
+</ion-list>
+</ion-content>

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams,Events,ModalController ,MenuControl
 import {NeedBookComponent} from '../../components/need-book/need-book';
 import {OwnBookComponent} from '../../components/own-book/own-book';
 import {UserinfoProvider} from "../../providers/userinfo/userinfo";
+import {FindMatchComponent} from '../../components/find-match/find-match';
 
 /**
  * Generated class for the OwnedBooksPage page.
@@ -50,6 +51,11 @@ export class OwnedBooksPage {
   	 let modal = this.modalCtrl.create(NeedBookComponent);
   	 this.mainChoice = false;
   	 	modal.present();
+  }
+  goToFindMatch(){
+      let modal = this.modalCtrl.create(FindMatchComponent);
+      this.mainChoice = false;
+      modal.present();
   }
 
 

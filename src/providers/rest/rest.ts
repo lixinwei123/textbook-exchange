@@ -9,8 +9,8 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class RestProvider {
-  apiUrl = "http://da3440d8.ngrok.io"
-    constructor(public http: HttpClient) {
+  apiUrl = "http://62696024.ngrok.io"  
+  constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
   }
 
