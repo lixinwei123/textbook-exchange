@@ -150,7 +150,7 @@ app.post('/editNeededBook', function(req,res){
 app.post('/deleteBook', function(req,res){
 	var user_id = req.body.uid;
 	var isbn = req.body.isbn;
-	let sql = `DELETE FROM OWNED_BOOKS WHERE isbn = '${isbn}' and usr_id = '${user_id}';`;
+	let sql = `DELETE FROM OWNED_BOOKS WHERE isbn = '${isbn}' and usr_id = '${user_id}' LIMIT 1;`;
 	console.log("sql",sql);
 	db.query(sql, (err, result) => {
 		console.log("result",result,"error",err)
@@ -167,6 +167,78 @@ app.post('/deleteNeededBook', function(req,res){
 		console.log("result",result,"error",err)
 	});
 	res.send('entry Deleted');
+});
+
+app.post('/findExchanger', function(req,res){
+	var user_id = req.body.user_id;
+	let sql = `CREATE TABLE ${user_id}(
+OWNED_ISBN VARCHAR(13),
+OWNED_Title VARCHAR(100),
+NEED_ISBN VARCHAR(13),
+NEED_Title VARCHAR(100));`;
+   
+	let sql2 = `INSERT INTO ${user_id} (OWNED_ISBN, OWNED_Title, NEED_ISBN, NEED_Title)
+SELECT OWNED_BOOKS.ISBN, OWNED_BOOKS.title, NEED_BOOKS.ISBN, NEED_BOOKS.title
+FROM OWNED_BOOKS, NEED_BOOKS WHERE OWNED_BOOKS.usr_id = "${user_id}"
+AND NEED_BOOKS.usr_id = "${user_id}";`;
+
+	let sql3 = `SELECT DISTINCT USER.first_name, USER.last_name, USER.email, OWNED_ISBN, OWNED_Title, NEED_ISBN, NEED_Title
+FROM ${user_id}
+JOIN OWNED_BOOKS
+ON OWNED_BOOKS.ISBN = ${user_id}.NEED_ISBN
+JOIN NEED_BOOKS
+ON NEED_BOOKS.ISBN = ${user_id}.OWNED_ISBN
+JOIN USER
+ON OWNED_BOOKS.usr_id = USER.id
+WHERE OWNED_BOOKS.METHOD != 2 AND NEED_BOOKS.METHOD != 2 AND NEED_BOOKS.usr_id != "${user_id}";`;
+
+	let sql4 = `DROP TABLE ${user_id};`;
+	console.log("slq", sql);
+	db.query(sql, (err, result) => {
+		console.log("result", result, "error", err)
+	});
+	db.query(sql2, (err, result) => {
+		console.log("result", result, "error", err)
+	});
+	db.query(sql3, (err, result) => {
+		console.log("result", result, "error", err)
+		res.send(result);
+	});
+	db.query(sql4, (err, result) => {
+		console.log("result", result, "error", err)
+	});
+});
+
+app.post('/findSeller', function(req, res){
+	var user_id = req.body.user_id;
+	let sql = `SELECT DISTINCT USER.first_name, USER.last_name, USER.email, NEED_BOOKS.ISBN, NEED_BOOKS.title, OWNED_BOOKS.PRICE
+FROM NEED_BOOKS
+JOIN OWNED_BOOKS
+ON NEED_BOOKS.ISBN = OWNED_BOOKS.ISBN AND NEED_BOOKS.PRICE >= OWNED_BOOKS.PRICE
+JOIN USER
+ON OWNED_BOOKS.usr_id = USER.id
+WHERE OWNED_BOOKS.METHOD != 1 AND NEED_BOOKS.METHOD != 1 AND NEED_BOOKS.usr_id = "${user_id}";`;
+	console.log("sql", sql);
+	db.query(sql, (err, result) => {
+		console.log("result", result, "error", err)
+		res.send(result);
+	});
+});
+
+app.post('/findBuyer', function(req, res){
+	var user_id = req.body.user_id;
+	let sql = `SELECT DISTINCT USER.first_name, USER.last_name, USER.email,  OWNED_BOOKS.ISBN, OWNED_BOOKS.title, OWNED_BOOKS.PRICE
+FROM NEED_BOOKS
+JOIN OWNED_BOOKS
+ON NEED_BOOKS.ISBN = OWNED_BOOKS.ISBN AND NEED_BOOKS.PRICE >= OWNED_BOOKS.PRICE
+JOIN USER
+ON NEED_BOOKS.usr_id = USER.id
+WHERE OWNED_BOOKS.METHOD != 1 AND NEED_BOOKS.METHOD != 1 AND OWNED_BOOKS.usr_id = "${user_id}"`;
+	console.log("sql", sql);
+	db.query(sql, (err, result) => {
+		console.log("result", result, "error", err)
+		res.send(result);
+	});
 });
 
 app.listen('3000', () => {

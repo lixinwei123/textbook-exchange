@@ -1,172 +1,5 @@
 webpackJsonp([2],{
 
-/***/ 108:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserinfoProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_fire_auth__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest_rest__ = __webpack_require__(78);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/*
-  Generated class for the UserinfoProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var UserinfoProvider = /** @class */ (function () {
-    function UserinfoProvider(http, afAuth, rest) {
-        this.http = http;
-        this.afAuth = afAuth;
-        this.rest = rest;
-        console.log('Hello UserinfoProvider Provider');
-    }
-    UserinfoProvider.prototype.subData = function () {
-        var _this = this;
-        this.afAuth.authState.subscribe(function (data) {
-            if (data.uid) {
-                _this.setUsrId(data.uid);
-                console.log("ok done");
-                _this.getOwnedBooks();
-                _this.getNeededBooks();
-            }
-            else {
-                console.log("no one logged in yet");
-            }
-        });
-    };
-    UserinfoProvider.prototype.getOwnedBooks = function () {
-        var _this = this;
-        this.bookArray = [];
-        var obj = {
-            uid: this.getUsrId()
-        };
-        this.rest.postRequest(obj, "/getOwnedBooks").then(function (success) {
-            console.log("success", success);
-            //success = JSON.stringify(success);
-            success = JSON.parse(success.toString());
-            var bookArr = [];
-            for (var i in success) {
-                var price, sell, exchange;
-                if (success[i].PRICE == 0) {
-                    price = null;
-                }
-                else {
-                    price = success[i].PRICE;
-                }
-                if (success[i].METHOD == 1) {
-                    sell = false;
-                    exchange = true;
-                }
-                else if (success[i].METHOD == 2) {
-                    sell = true;
-                    exchange = false;
-                }
-                else if (success[i].METHOD == 3) {
-                    sell = true;
-                    exchange = true;
-                }
-                var bookObj = {
-                    isbn: success[i].ISBN,
-                    name: success[i].title,
-                    price: price,
-                    sell: sell,
-                    exchange: exchange
-                };
-                bookArr.push(bookObj);
-            }
-            _this.bookArray = bookArr;
-            console.log("omg", bookArr);
-            return bookArr;
-        }, function (fail) {
-            console.log("fail");
-        });
-    };
-    UserinfoProvider.prototype.getNeededBooks = function () {
-        var _this = this;
-        this.neededBookArray = [];
-        var obj = {
-            uid: this.getUsrId()
-        };
-        this.rest.postRequest(obj, "/getNeededBooks").then(function (success) {
-            console.log("success", success);
-            success = JSON.parse(success.toString());
-            var neededBookArr = [];
-            for (var i in success) {
-                var price, buy, exchange;
-                if (success[i].PRICE == 0) {
-                    price = null;
-                }
-                else {
-                    price = success[i].PRICE;
-                }
-                if (success[i].METHOD == 1) {
-                    buy = false;
-                    exchange = true;
-                }
-                else if (success[i].METHOD == 2) {
-                    buy = true;
-                    exchange = false;
-                }
-                else if (success[i].METHOD == 3) {
-                    buy = true;
-                    exchange = true;
-                }
-                var bookObj = {
-                    isbn: success[i].ISBN,
-                    name: success[i].title,
-                    price: price,
-                    buy: buy,
-                    exchange: exchange
-                };
-                neededBookArr.push(bookObj);
-            }
-            _this.neededBookArray = neededBookArr;
-            console.log("omg I know", neededBookArr);
-            return neededBookArr;
-        }, function (fail) {
-            console.log("fail");
-        });
-    };
-    UserinfoProvider.prototype.setUsrId = function (uid) {
-        this.uid = uid;
-    };
-    UserinfoProvider.prototype.getUsrId = function () {
-        return this.uid;
-    };
-    UserinfoProvider.prototype.getBookArray = function () {
-        return this.bookArray;
-    };
-    UserinfoProvider.prototype.getNeededBookArray = function () {
-        return this.neededBookArray;
-    };
-    UserinfoProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_fire_auth__["a" /* AngularFireAuth */],
-            __WEBPACK_IMPORTED_MODULE_3__rest_rest__["a" /* RestProvider */]])
-    ], UserinfoProvider);
-    return UserinfoProvider;
-}());
-
-//# sourceMappingURL=userinfo.js.map
-
-/***/ }),
-
 /***/ 198:
 /***/ (function(module, exports) {
 
@@ -189,7 +22,7 @@ webpackEmptyAsyncContext.id = 198;
 
 var map = {
 	"../pages/login/login.module": [
-		778,
+		780,
 		1
 	],
 	"../pages/owned-books/owned-books.module": [
@@ -219,8 +52,8 @@ module.exports = webpackAsyncContext;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(91);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -264,135 +97,11 @@ var HomePage = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_fire_auth__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__ = __webpack_require__(78);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-//import { Database } from 'firebase/database';
-/**
- * Generated class for the RegisterComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
-var RegisterComponent = /** @class */ (function () {
-    function RegisterComponent(navCtrl, modalCtrl, viewCtrl, events, afAuth, alertCtrl, restAPI) {
-        this.navCtrl = navCtrl;
-        this.modalCtrl = modalCtrl;
-        this.viewCtrl = viewCtrl;
-        this.events = events;
-        this.afAuth = afAuth;
-        this.alertCtrl = alertCtrl;
-        this.restAPI = restAPI;
-        this.text = "";
-        this.password = "";
-        this.email = "";
-        this.passwordC = "";
-        this.emailC = "";
-        this.firstname = "";
-        this.lastname = "";
-        console.log('Hello RegisterComponent Component');
-        this.text = 'Hello World';
-    }
-    RegisterComponent.prototype.closeModal = function () {
-        this.viewCtrl.dismiss();
-        this.events.publish('showLoginCard');
-        console.log('clicked on closeModal function');
-    };
-    RegisterComponent.prototype.alertError = function (error) {
-        var alert = this.alertCtrl.create({
-            title: error
-        });
-        alert.present();
-    };
-    RegisterComponent.prototype.finishRegistration = function () {
-        //var database = Database.database();
-        //var ref = database.ref("ID");
-        //ref.on('ID', this.getID, this.err);
-        var _this = this;
-        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (this.password != this.passwordC) {
-            this.alertError("Passwords do not match.");
-        }
-        else if (this.email != this.emailC) {
-            this.alertError("Emails do not match.");
-        }
-        else if (this.password.length < 7) {
-            this.alertError("The password should be at least 7 characters long.");
-        }
-        else if (re.test(String(this.email).toLowerCase()) == false) {
-            this.alertError("bad email");
-        }
-        else if (this.firstname == "") {
-            this.alertError("Please enter your first name.");
-        }
-        else if (this.lastname == "") {
-            this.alertError("Please enter your last name.");
-        }
-        else {
-            var result = this.afAuth.auth.createUserWithEmailAndPassword(this.email, this.password).then(function (res) {
-                var usrInfo = {
-                    uid: res.user.uid,
-                    email: _this.email,
-                    firstname: _this.firstname,
-                    lastname: _this.lastname
-                };
-                console.log("registered", res.user.uid);
-                _this.restAPI.postRequest(usrInfo, '/createUser').then(function (result) {
-                    console.log(result);
-                }, function (err) {
-                    console.log("error", err);
-                });
-                _this.closeModal();
-            }, function (fail) {
-                _this.alertError("invalid information or this email has already been used");
-            });
-        }
-    };
-    RegisterComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'register',template:/*ion-inline-start:"/Users/vyquach/Desktop/textbook-exchange/src/components/register/register.html"*/'<!-- Generated template for the RegisterComponent component -->\n\n<ion-content>\n	\n<button ion-button icon-only (click) = "closeModal();" class = "close-button"><ion-icon name = "close"></ion-icon></button>\n	<h1>Registration</h1>\n	<div class = "input-information">\n		<ion-item>\n		<ion-label floating>Email Address</ion-label>\n		<ion-input type="text" [(ngModel)] = "email"></ion-input>\n		</ion-item>\n		<ion-item>\n		<ion-label floating>Confirm Email Address</ion-label>\n		<ion-input type="text" [(ngModel)] = "emailC"></ion-input>\n		</ion-item>\n		<ion-item>\n		<ion-label floating >Password</ion-label>\n		<ion-input type="password"[(ngModel)] = "password" ></ion-input>\n		</ion-item>\n			<ion-item>\n		<ion-label floating >Confirm Password</ion-label>\n		<ion-input type="password" [(ngModel)] = "passwordC"></ion-input>\n		</ion-item>\n		<ion-item>\n		<ion-label floating>First Name</ion-label>\n		<ion-input type="text" [(ngModel)] = "firstname"></ion-input>\n		</ion-item>\n		<ion-item>\n		<ion-label floating>Last Name</ion-label>\n		<ion-input type="text" [(ngModel)] = "lastname"></ion-input>\n		</ion-item>\n	</div>\n		<div class = "next-step">		\n			<button ion-button (click) = "finishRegistration()">Finish Registration</button>\n		</div>\n</ion-content>\n'/*ion-inline-end:"/Users/vyquach/Desktop/textbook-exchange/src/components/register/register.html"*/
-        }),
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_fire_auth__["a" /* AngularFireAuth */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__["a" /* RestProvider */]])
-    ], RegisterComponent);
-    return RegisterComponent;
-}());
-
-//# sourceMappingURL=register.js.map
-
-/***/ }),
-
-/***/ 395:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NeedBookComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_userinfo_userinfo__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_userinfo_userinfo__ = __webpack_require__(79);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -564,7 +273,7 @@ var NeedBookComponent = /** @class */ (function () {
     };
     NeedBookComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'need-book',template:/*ion-inline-start:"/Users/vyquach/Desktop/textbook-exchange/src/components/need-book/need-book.html"*/'\n<ion-content>\n<button ion-button icon-only (click) = "closeModal();" class = "close-button"><ion-icon name = "close"></ion-icon></button>\n	<h1>Needed Books</h1>\n	<ion-grid>\n		<h3 style = "margin-left:0.8rem;">Registered Books:</h3>\n		<ion-row style = "margin-top:1rem;">\n			<ion-col>\n				ISBN\n			</ion-col>\n			<ion-col>\n				name\n			</ion-col>\n			<ion-col>\n				options\n			</ion-col>\n		</ion-row>\n		<ion-row *ngFor = "let book of neededBooks">\n			<ion-col>\n				{{book.isbn}}\n			</ion-col>\n			<ion-col>\n				 {{book.name}}\n			</ion-col>\n			<ion-col>\n				<span *ngIf = "book.exchange" ><ion-icon name = "checkbox" color = "secondary"></ion-icon> Exchange &nbsp; &nbsp;</span>\n				<span *ngIf = "book.buy"> <ion-icon name = "checkbox" ></ion-icon> Buy ${{book.price}}</span> \n				<button ion-button icon-only class = "delete-button" (click) = "confirmDeletion(book)"> <ion-icon name = "close" ></ion-icon></button>\n				<button ion-button icon-only class = "create-button delete-button" (click) = "editBook(book)"> <ion-icon name = "create" ></ion-icon></button>\n			</ion-col>\n		</ion-row>\n	</ion-grid>\n	<ion-grid>\n		<ion-row>\n			<ion-col>\n				<ion-input type="text" placeholder = "ISBN" [(ngModel)] = "bookISBN"></ion-input>\n			</ion-col>\n			<ion-col>\n				<ion-input type="text" placeholder = "Book Name" [(ngModel)]="bookName"></ion-input>\n			</ion-col>\n			<ion-col style = "margin:auto;">\n					<span><ion-checkbox color="secondary" checked="true" [(ngModel)] = "bookExchange"></ion-checkbox> Exchange &nbsp; &nbsp;</span>\n					<span><ion-checkbox color="dark" checked="true" [(ngModel)] = "bookBuy"></ion-checkbox> Buy </span>\n					<button ion-button icon-only class = "add-button delete-button" (click) = "addBook()"> \n						<ion-icon name = "add" *ngIf = "!currentEdit"></ion-icon>\n						<ion-icon name = "create" *ngIf = "currentEdit"></ion-icon>\n					</button> \n					<ion-input placeholder = "maximum amount willing to buy" *ngIf = "bookBuy" [(ngModel)] = "bookPrice"></ion-input>\n			</ion-col>\n		</ion-row>\n	</ion-grid>\n</ion-content>'/*ion-inline-end:"/Users/vyquach/Desktop/textbook-exchange/src/components/need-book/need-book.html"*/
+            selector: 'need-book',template:/*ion-inline-start:"/Users/vyquach/Desktop/textbook-exchange/src/components/need-book/need-book.html"*/'\n<ion-content>\n<button ion-button icon-only (click) = "closeModal();" class = "close-button"><ion-icon name = "close"></ion-icon></button>\n	<h1>Needed Books</h1>\n	<ion-grid>\n		<h3 style = "margin-left:0.8rem;">Registered Books:</h3>\n		<ion-row style = "margin-top:1rem;">\n			<ion-col>\n				ISBN\n			</ion-col>\n			<ion-col>\n				name\n			</ion-col>\n			<ion-col>\n				options\n			</ion-col>\n		</ion-row>\n		<ion-row *ngFor = "let book of neededBooks">\n			<ion-col>\n				{{book.isbn}}\n			</ion-col>\n			<ion-col>\n				 {{book.name}}\n			</ion-col>			\n			<ion-col>\n				<span *ngIf = "book.exchange" ><ion-icon name = "checkbox" color = "secondary"></ion-icon> Exchange &nbsp; &nbsp;</span>\n				<span *ngIf = "book.buy"> <ion-icon name = "checkbox" ></ion-icon> Buy ${{book.price}}</span> \n				<button ion-button icon-only class = "delete-button" (click) = "confirmDeletion(book)"> <ion-icon name = "close" ></ion-icon></button>\n				<button ion-button icon-only class = "create-button delete-button" (click) = "editBook(book)"> <ion-icon name = "create" ></ion-icon></button>\n			</ion-col>\n		</ion-row>\n	</ion-grid>\n	<ion-grid>\n		<ion-row>\n			<ion-col>\n				<ion-input type="text" placeholder = "ISBN" [(ngModel)] = "bookISBN"></ion-input>\n			</ion-col>\n			<ion-col>\n				<ion-input type="text" placeholder = "Book Name" [(ngModel)]="bookName"></ion-input>\n			</ion-col>\n			<ion-col style = "margin:auto;">\n					<span><ion-checkbox color="secondary" checked="true" [(ngModel)] = "bookExchange"></ion-checkbox> Exchange &nbsp; &nbsp;</span>\n					<span><ion-checkbox color="dark" checked="true" [(ngModel)] = "bookBuy"></ion-checkbox> Buy </span>\n					<button ion-button icon-only class = "add-button delete-button" (click) = "addBook()"> \n						<ion-icon name = "add" *ngIf = "!currentEdit"></ion-icon>\n						<ion-icon name = "create" *ngIf = "currentEdit"></ion-icon>\n					</button> \n					<ion-input placeholder = "maximum amount willing to buy" *ngIf = "bookBuy" [(ngModel)] = "bookPrice"></ion-input>\n			</ion-col>\n		</ion-row>\n	</ion-grid>\n</ion-content>'/*ion-inline-end:"/Users/vyquach/Desktop/textbook-exchange/src/components/need-book/need-book.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
@@ -581,15 +290,15 @@ var NeedBookComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 396:
+/***/ 395:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OwnBookComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_userinfo_userinfo__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_userinfo_userinfo__ = __webpack_require__(79);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -782,13 +491,293 @@ var OwnBookComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 396:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindMatchComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_userinfo_userinfo__ = __webpack_require__(79);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the FindMatchComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
+var FindMatchComponent = /** @class */ (function () {
+    function FindMatchComponent(navCtrl, modalCtrl, viewCtrl, events, alertCtrl, restAPI, usrInfo, rest) {
+        this.navCtrl = navCtrl;
+        this.modalCtrl = modalCtrl;
+        this.viewCtrl = viewCtrl;
+        this.events = events;
+        this.alertCtrl = alertCtrl;
+        this.restAPI = restAPI;
+        this.usrInfo = usrInfo;
+        this.rest = rest;
+        console.log('Hello FindMatchComponent Component');
+        this.text = 'Hello World';
+        this.findExchanger();
+        this.findSeller();
+        this.findBuyer();
+    }
+    FindMatchComponent.prototype.closeModal = function () {
+        this.viewCtrl.dismiss();
+        this.events.publish('showChoices');
+        console.log('clicked on closeModal function');
+    };
+    FindMatchComponent.prototype.findExchanger = function () {
+        var _this = this;
+        this.exchangerArray = [];
+        var user_obj = {
+            user_id: this.usrInfo.getUsrId()
+        };
+        console.log(user_obj);
+        this.rest.postRequest(user_obj, "/findExchanger").then(function (success) {
+            console.log("success", success);
+            //success = JSON.stringify(success);
+            success = JSON.parse(success.toString());
+            for (var i in success) {
+                var exchangerObj = {
+                    name: success[i].first_name + " " + success[i].last_name,
+                    email: success[i].email,
+                    owned_ISBN: success[i].OWNED_ISBN,
+                    owned_title: success[i].OWNED_Title,
+                    need_ISBN: success[i].NEED_ISBN,
+                    need_title: success[i].NEED_Title,
+                };
+                _this.exchangerArray.push(exchangerObj);
+            }
+            console.log("omg", _this.exchangerArray);
+            return _this.exchangerArray;
+        }, function (fail) {
+            console.log("fail");
+        });
+    };
+    FindMatchComponent.prototype.findSeller = function () {
+        var _this = this;
+        this.sellerArray = [];
+        var user_obj = {
+            user_id: this.usrInfo.getUsrId()
+        };
+        console.log(user_obj);
+        this.rest.postRequest(user_obj, "/findSeller").then(function (success) {
+            console.log("success", success);
+            success = JSON.parse(success.toString());
+            for (var i in success) {
+                var sellerObj = {
+                    name: success[i].first_name + " " + success[i].last_name,
+                    email: success[i].email,
+                    need_title: success[i].title,
+                    need_ISBN: success[i].ISBN,
+                    price: "$ " + success[i].PRICE,
+                };
+                _this.sellerArray.push(sellerObj);
+            }
+            console.log("omg", _this.sellerArray);
+            return _this.sellerArray;
+        }, function (fail) {
+            console.log("fail");
+        });
+    };
+    FindMatchComponent.prototype.findBuyer = function () {
+        var _this = this;
+        this.buyerArray = [];
+        var user_obj = {
+            user_id: this.usrInfo.getUsrId()
+        };
+        console.log(user_obj);
+        this.rest.postRequest(user_obj, "/findBuyer").then(function (success) {
+            console.log("success", success);
+            success = JSON.parse(success.toString());
+            for (var i in success) {
+                var buyerObj = {
+                    name: success[i].first_name + " " + success[i].last_name,
+                    email: success[i].email,
+                    owned_title: success[i].title,
+                    owned_ISBN: success[i].ISBN,
+                    price: "$ " + success[i].PRICE,
+                };
+                _this.buyerArray.push(buyerObj);
+            }
+            console.log("omg", _this.buyerArray);
+            return _this.buyerArray;
+        }, function (fail) {
+            console.log("fail");
+        });
+    };
+    FindMatchComponent.prototype.postReq = function (obj, url) {
+        this.restAPI.postRequest(obj, url).then(function (result) {
+            console.log(result);
+        }, function (err) {
+            console.log("error", err);
+        });
+    };
+    FindMatchComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'find-match',template:/*ion-inline-start:"/Users/vyquach/Desktop/textbook-exchange/src/components/find-match/find-match.html"*/'<!-- Generated template for the FindMatchComponent component -->\n<ion-content>\n<button ion-button icon-only (click) = "closeModal();" class = "close-button"><ion-icon name = "close"></ion-icon></button>\n	<h1>Exchange Offer(s):</h1>\n  <ion-list>\n  <ion-grid>\n		<ion-row style = "margin-top:1rem;">\n			<ion-col>\n				Name:\n			</ion-col>\n			<ion-col>\n				Email Address:\n			</ion-col>\n			<ion-col>\n				Title:\n			</ion-col>\n			<ion-col>\n				ISBN:\n			</ion-col>\n			<ion-col>\n				Your Book\'s Title:\n			</ion-col>\n			<ion-col>\n				Your Book\'s ISBN:\n			</ion-col>\n		</ion-row>\n		<ion-row *ngFor = "let exchanger of exchangerArray">\n			<ion-col>\n				{{exchanger.name}}\n			</ion-col>\n			<ion-col>\n				 {{exchanger.email}}\n			</ion-col>\n				<ion-col>\n				 {{exchanger.need_title}}\n			</ion-col>\n				<ion-col>\n				 {{exchanger.need_ISBN}}\n			</ion-col>\n				<ion-col>\n				 {{exchanger.owned_title}}\n			</ion-col>\n				<ion-col>\n				 {{exchanger.owned_ISBN}}\n			</ion-col>\n		</ion-row>\n  </ion-grid>\n  	<h2>Selling Offer(s):</h2>\n  <ion-grid>\n		<ion-row style = "margin-top:1rem;">\n			<ion-col>\n				Name:\n			</ion-col>\n			<ion-col>\n				Email Address:\n			</ion-col>\n			<ion-col>\n				Title:\n			</ion-col>\n			<ion-col>\n				ISBN:\n			</ion-col>\n			<ion-col>\n				Price Offered:\n			</ion-col>\n		</ion-row>\n		<ion-row *ngFor = "let seller of sellerArray">\n			<ion-col>\n				{{seller.name}}\n			</ion-col>\n			<ion-col>\n				{{seller.email}}\n			</ion-col>\n			<ion-col>\n				{{seller.need_title}}\n			</ion-col>\n			<ion-col>\n				{{seller.need_ISBN}}\n			</ion-col>\n			<ion-col>\n				{{seller.price}}\n			</ion-col>\n		</ion-row>\n  </ion-grid>\n   	<h3>Buying Offer(s):</h3>\n  <ion-grid>\n		<ion-row style = "margin-top:1rem;">\n			<ion-col>\n				Name:\n			</ion-col>\n			<ion-col>\n				Email Address:\n			</ion-col>\n			<ion-col>\n				Title:\n			</ion-col>\n			<ion-col>\n				ISBN:\n			</ion-col>\n			<ion-col>\n				Price Offered:\n			</ion-col>\n		</ion-row>\n		<ion-row *ngFor = "let buyer of buyerArray">\n			<ion-col>\n				{{buyer.name}}\n			</ion-col>\n			<ion-col>\n				{{buyer.email}}\n			</ion-col>\n			<ion-col>\n				{{buyer.owned_title}}\n			</ion-col>\n			<ion-col>\n				{{buyer.owned_ISBN}}\n			</ion-col>\n			<ion-col>\n				{{buyer.price}}\n			</ion-col>\n		</ion-row>\n  </ion-grid>\n</ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/vyquach/Desktop/textbook-exchange/src/components/find-match/find-match.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_userinfo_userinfo__["a" /* UserinfoProvider */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]])
+    ], FindMatchComponent);
+    return FindMatchComponent;
+}());
+
+//# sourceMappingURL=find-match.js.map
+
+/***/ }),
+
 /***/ 397:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_fire_auth__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__ = __webpack_require__(53);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+//import { Database } from 'firebase/database';
+/**
+ * Generated class for the RegisterComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
+var RegisterComponent = /** @class */ (function () {
+    function RegisterComponent(navCtrl, modalCtrl, viewCtrl, events, afAuth, alertCtrl, restAPI) {
+        this.navCtrl = navCtrl;
+        this.modalCtrl = modalCtrl;
+        this.viewCtrl = viewCtrl;
+        this.events = events;
+        this.afAuth = afAuth;
+        this.alertCtrl = alertCtrl;
+        this.restAPI = restAPI;
+        this.text = "";
+        this.password = "";
+        this.email = "";
+        this.passwordC = "";
+        this.emailC = "";
+        this.firstname = "";
+        this.lastname = "";
+        console.log('Hello RegisterComponent Component');
+        this.text = 'Hello World';
+    }
+    RegisterComponent.prototype.closeModal = function () {
+        this.viewCtrl.dismiss();
+        this.events.publish('showLoginCard');
+        console.log('clicked on closeModal function');
+    };
+    RegisterComponent.prototype.alertError = function (error) {
+        var alert = this.alertCtrl.create({
+            title: error
+        });
+        alert.present();
+    };
+    RegisterComponent.prototype.finishRegistration = function () {
+        //var database = Database.database();
+        //var ref = database.ref("ID");
+        //ref.on('ID', this.getID, this.err);
+        var _this = this;
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (this.password != this.passwordC) {
+            this.alertError("Passwords do not match.");
+        }
+        else if (this.email != this.emailC) {
+            this.alertError("Emails do not match.");
+        }
+        else if (this.password.length < 7) {
+            this.alertError("The password should be at least 7 characters long.");
+        }
+        else if (re.test(String(this.email).toLowerCase()) == false) {
+            this.alertError("bad email");
+        }
+        else if (this.firstname == "") {
+            this.alertError("Please enter your first name.");
+        }
+        else if (this.lastname == "") {
+            this.alertError("Please enter your last name.");
+        }
+        else {
+            var result = this.afAuth.auth.createUserWithEmailAndPassword(this.email, this.password).then(function (res) {
+                var usrInfo = {
+                    uid: res.user.uid,
+                    email: _this.email,
+                    firstname: _this.firstname,
+                    lastname: _this.lastname
+                };
+                console.log("registered", res.user.uid);
+                _this.restAPI.postRequest(usrInfo, '/createUser').then(function (result) {
+                    console.log(result);
+                }, function (err) {
+                    console.log("error", err);
+                });
+                _this.closeModal();
+            }, function (fail) {
+                _this.alertError("invalid information or this email has already been used");
+            });
+        }
+    };
+    RegisterComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'register',template:/*ion-inline-start:"/Users/vyquach/Desktop/textbook-exchange/src/components/register/register.html"*/'<!-- Generated template for the RegisterComponent component -->\n\n<ion-content>\n	\n<button ion-button icon-only (click) = "closeModal();" class = "close-button"><ion-icon name = "close"></ion-icon></button>\n	<h1>Registration</h1>\n	<div class = "input-information">\n		<ion-item>\n		<ion-label floating>Email Address</ion-label>\n		<ion-input type="text" [(ngModel)] = "email"></ion-input>\n		</ion-item>\n		<ion-item>\n		<ion-label floating>Confirm Email Address</ion-label>\n		<ion-input type="text" [(ngModel)] = "emailC"></ion-input>\n		</ion-item>\n		<ion-item>\n		<ion-label floating >Password</ion-label>\n		<ion-input type="password"[(ngModel)] = "password" ></ion-input>\n		</ion-item>\n			<ion-item>\n		<ion-label floating >Confirm Password</ion-label>\n		<ion-input type="password" [(ngModel)] = "passwordC"></ion-input>\n		</ion-item>\n		<ion-item>\n		<ion-label floating>First Name</ion-label>\n		<ion-input type="text" [(ngModel)] = "firstname"></ion-input>\n		</ion-item>\n		<ion-item>\n		<ion-label floating>Last Name</ion-label>\n		<ion-input type="text" [(ngModel)] = "lastname"></ion-input>\n		</ion-item>\n	</div>\n		<div class = "next-step">		\n			<button ion-button (click) = "finishRegistration()">Finish Registration</button>\n		</div>\n</ion-content>\n'/*ion-inline-end:"/Users/vyquach/Desktop/textbook-exchange/src/components/register/register.html"*/
+        }),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_fire_auth__["a" /* AngularFireAuth */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__["a" /* RestProvider */]])
+    ], RegisterComponent);
+    return RegisterComponent;
+}());
+
+//# sourceMappingURL=register.js.map
+
+/***/ }),
+
+/***/ 398:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(398);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(402);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(399);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(403);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -796,34 +785,36 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 402:
+/***/ 403:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(389);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(392);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(775);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(776);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(393);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_register_register__ = __webpack_require__(394);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_own_book_own_book__ = __webpack_require__(396);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_need_book_need_book__ = __webpack_require__(395);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_menu_menu__ = __webpack_require__(776);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common_http__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_fire__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_fire_auth__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_firebase_config__ = __webpack_require__(777);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_rest_rest__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_userinfo_userinfo__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_register_register__ = __webpack_require__(397);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_own_book_own_book__ = __webpack_require__(395);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_need_book_need_book__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_find_match_find_match__ = __webpack_require__(396);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_menu_menu__ = __webpack_require__(777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_common_http__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_fire__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_fire_auth__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_firebase_config__ = __webpack_require__(778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_rest_rest__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_userinfo_userinfo__ = __webpack_require__(79);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -858,20 +849,21 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_7__components_register_register__["a" /* RegisterComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__components_own_book_own_book__["a" /* OwnBookComponent */],
                 __WEBPACK_IMPORTED_MODULE_9__components_need_book_need_book__["a" /* NeedBookComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__components_menu_menu__["a" /* MenuComponent */]
+                __WEBPACK_IMPORTED_MODULE_11__components_menu_menu__["a" /* MenuComponent */],
+                __WEBPACK_IMPORTED_MODULE_10__components_find_match_find_match__["a" /* FindMatchComponent */]
                 // RegisterPage
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/owned-books/owned-books.module#OwnedBooksPageModule', name: 'OwnedBooksPage', segment: 'owned-books', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/owned-books/owned-books.module#OwnedBooksPageModule', name: 'OwnedBooksPage', segment: 'owned-books', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] }
                     ]
                 }),
-                __WEBPACK_IMPORTED_MODULE_11__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_fire__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_14__app_firebase_config__["a" /* FIREBASE_CONFIG */]),
-                __WEBPACK_IMPORTED_MODULE_13__angular_fire_auth__["b" /* AngularFireAuthModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_13__angular_fire__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_15__app_firebase_config__["a" /* FIREBASE_CONFIG */]),
+                __WEBPACK_IMPORTED_MODULE_14__angular_fire_auth__["b" /* AngularFireAuthModule */],
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicApp */]],
             entryComponents: [
@@ -879,7 +871,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */],
                 __WEBPACK_IMPORTED_MODULE_7__components_register_register__["a" /* RegisterComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__components_own_book_own_book__["a" /* OwnBookComponent */],
-                __WEBPACK_IMPORTED_MODULE_9__components_need_book_need_book__["a" /* NeedBookComponent */]
+                __WEBPACK_IMPORTED_MODULE_9__components_need_book_need_book__["a" /* NeedBookComponent */],
+                __WEBPACK_IMPORTED_MODULE_10__components_find_match_find_match__["a" /* FindMatchComponent */]
                 // RegisterPage
             ],
             providers: [
@@ -887,8 +880,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
                 // HttpClient,
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_15__providers_rest_rest__["a" /* RestProvider */],
-                __WEBPACK_IMPORTED_MODULE_16__providers_userinfo_userinfo__["a" /* UserinfoProvider */],
+                __WEBPACK_IMPORTED_MODULE_16__providers_rest_rest__["a" /* RestProvider */],
+                __WEBPACK_IMPORTED_MODULE_17__providers_userinfo_userinfo__["a" /* UserinfoProvider */],
             ]
         })
     ], AppModule);
@@ -899,13 +892,66 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 775:
+/***/ 53:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RestProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/*
+  Generated class for the RestProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var RestProvider = /** @class */ (function () {
+    function RestProvider(http) {
+        this.http = http;
+        this.apiUrl = "http://62696024.ngrok.io";
+        console.log('Hello RestProvider Provider');
+    }
+    RestProvider.prototype.postRequest = function (uObj, method) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.http.post(_this.apiUrl + method, uObj, { responseType: 'text' })
+                .subscribe(function (res) {
+                resolve(res);
+            }, function (err) {
+                reject(err);
+            });
+        });
+    };
+    RestProvider.prototype.getRequest = function (uObj, method) { };
+    RestProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
+    ], RestProvider);
+    return RestProvider;
+}());
+
+//# sourceMappingURL=rest.js.map
+
+/***/ }),
+
+/***/ 776:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(389);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(393);
@@ -945,14 +991,14 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 776:
+/***/ 777:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_fire_auth__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_fire_auth__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1005,7 +1051,7 @@ var MenuComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 777:
+/***/ 778:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1028,13 +1074,15 @@ var FIREBASE_CONFIG = {
 
 /***/ }),
 
-/***/ 78:
+/***/ 79:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RestProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(103);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserinfoProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_fire_auth__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest_rest__ = __webpack_require__(53);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1046,40 +1094,152 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 /*
-  Generated class for the RestProvider provider.
+  Generated class for the UserinfoProvider provider.
 
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
-var RestProvider = /** @class */ (function () {
-    function RestProvider(http) {
+var UserinfoProvider = /** @class */ (function () {
+    function UserinfoProvider(http, afAuth, rest) {
         this.http = http;
-        this.apiUrl = "http://da3440d8.ngrok.io";
-        console.log('Hello RestProvider Provider');
+        this.afAuth = afAuth;
+        this.rest = rest;
+        console.log('Hello UserinfoProvider Provider');
     }
-    RestProvider.prototype.postRequest = function (uObj, method) {
+    UserinfoProvider.prototype.subData = function () {
         var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.http.post(_this.apiUrl + method, uObj, { responseType: 'text' })
-                .subscribe(function (res) {
-                resolve(res);
-            }, function (err) {
-                reject(err);
-            });
+        this.afAuth.authState.subscribe(function (data) {
+            if (data.uid) {
+                _this.setUsrId(data.uid);
+                console.log("ok done");
+                _this.getOwnedBooks();
+                _this.getNeededBooks();
+            }
+            else {
+                console.log("no one logged in yet");
+            }
         });
     };
-    RestProvider.prototype.getRequest = function (uObj, method) { };
-    RestProvider = __decorate([
+    UserinfoProvider.prototype.getOwnedBooks = function () {
+        var _this = this;
+        this.bookArray = [];
+        var obj = {
+            uid: this.getUsrId()
+        };
+        this.rest.postRequest(obj, "/getOwnedBooks").then(function (success) {
+            console.log("success", success);
+            //success = JSON.stringify(success);
+            success = JSON.parse(success.toString());
+            var bookArr = [];
+            for (var i in success) {
+                var price, sell, exchange;
+                if (success[i].PRICE == 0) {
+                    price = null;
+                }
+                else {
+                    price = success[i].PRICE;
+                }
+                if (success[i].METHOD == 1) {
+                    sell = false;
+                    exchange = true;
+                }
+                else if (success[i].METHOD == 2) {
+                    sell = true;
+                    exchange = false;
+                }
+                else if (success[i].METHOD == 3) {
+                    sell = true;
+                    exchange = true;
+                }
+                var bookObj = {
+                    isbn: success[i].ISBN,
+                    name: success[i].title,
+                    price: price,
+                    sell: sell,
+                    exchange: exchange
+                };
+                bookArr.push(bookObj);
+            }
+            _this.bookArray = bookArr;
+            console.log("omg", bookArr);
+            return bookArr;
+        }, function (fail) {
+            console.log("fail");
+        });
+    };
+    UserinfoProvider.prototype.getNeededBooks = function () {
+        var _this = this;
+        this.neededBookArray = [];
+        var obj = {
+            uid: this.getUsrId()
+        };
+        this.rest.postRequest(obj, "/getNeededBooks").then(function (success) {
+            console.log("success", success);
+            success = JSON.parse(success.toString());
+            var neededBookArr = [];
+            for (var i in success) {
+                var price, buy, exchange;
+                if (success[i].PRICE == 0) {
+                    price = null;
+                }
+                else {
+                    price = success[i].PRICE;
+                }
+                if (success[i].METHOD == 1) {
+                    buy = false;
+                    exchange = true;
+                }
+                else if (success[i].METHOD == 2) {
+                    buy = true;
+                    exchange = false;
+                }
+                else if (success[i].METHOD == 3) {
+                    buy = true;
+                    exchange = true;
+                }
+                var bookObj = {
+                    isbn: success[i].ISBN,
+                    name: success[i].title,
+                    price: price,
+                    buy: buy,
+                    exchange: exchange
+                };
+                neededBookArr.push(bookObj);
+            }
+            _this.neededBookArray = neededBookArr;
+            console.log("omg I know", neededBookArr);
+            return neededBookArr;
+        }, function (fail) {
+            console.log("fail");
+        });
+    };
+    UserinfoProvider.prototype.setUsrId = function (uid) {
+        this.uid = uid;
+    };
+    UserinfoProvider.prototype.getUsrId = function () {
+        return this.uid;
+    };
+    UserinfoProvider.prototype.getBookArray = function () {
+        return this.bookArray;
+    };
+    UserinfoProvider.prototype.getNeededBookArray = function () {
+        return this.neededBookArray;
+    };
+    UserinfoProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
-    ], RestProvider);
-    return RestProvider;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_fire_auth__["a" /* AngularFireAuth */],
+            __WEBPACK_IMPORTED_MODULE_3__rest_rest__["a" /* RestProvider */]])
+    ], UserinfoProvider);
+    return UserinfoProvider;
 }());
 
-//# sourceMappingURL=rest.js.map
+//# sourceMappingURL=userinfo.js.map
 
 /***/ })
 
-},[397]);
+},[398]);
 //# sourceMappingURL=main.js.map

@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import {RegisterComponent} from '../components/register/register';
 import {OwnBookComponent} from '../components/own-book/own-book';
 import {NeedBookComponent} from '../components/need-book/need-book';
+import {FindMatchComponent} from '../components/find-match/find-match';
 import {MenuComponent} from '../components/menu/menu';
 import {LoginPage} from "../pages/login/login";
 // import { HTTP } from '@ionic-native/http';
@@ -30,7 +31,8 @@ import { UserinfoProvider } from '../providers/userinfo/userinfo';
     RegisterComponent,
     OwnBookComponent,
     NeedBookComponent,
-    MenuComponent
+    MenuComponent,
+    FindMatchComponent
     // RegisterPage
   ],
   imports: [
@@ -48,7 +50,8 @@ import { UserinfoProvider } from '../providers/userinfo/userinfo';
     HomePage,
     RegisterComponent,
     OwnBookComponent,
-    NeedBookComponent
+    NeedBookComponent,
+    FindMatchComponent
     // RegisterPage
     
   ],

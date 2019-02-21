@@ -25684,6 +25684,42 @@ ion-navbar.toolbar {
   background-size: cover;
 }
 
+find-match ion-content {
+  opacity: 0.9;
+}
+
+find-match ion-content h1, find-match ion-content h2, find-match ion-content h3 {
+  text-align: center;
+  margin-top: 1.2rem !important;
+  margin-left: 3rem !important;
+}
+
+find-match .close-button {
+  float: right;
+  background: transparent;
+  color: black;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+find-match .delete-button {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: transparent;
+  color: #840e1e;
+  width: 2rem;
+  height: 2rem;
+  float: right;
+}
+
+find-match .add-button {
+  color: #1c3d2b !important;
+}
+
+find-match .create-button {
+  color: #3261ad !important;
+}
+
 need-book ion-content {
   opacity: 0.9;
 }
