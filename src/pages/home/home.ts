@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 
+
 // import { HttpClientModule } from "@angular/common/http"; 
 
 @Component({
@@ -21,5 +22,9 @@ export class HomePage {
    this.req.subscribe(data => {
    	console.log("data",data);
    })
+  }
+
+  goToLogin(){
+    this.navCtrl.setRoot("LoginPage");
   }
 }
