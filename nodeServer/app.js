@@ -6,6 +6,7 @@ const logger = require('morgan');
 const methodOverride = require('method-override')
 const cors = require('cors');
 //Create connection
+app.use(express.static("../src/pages/home/"));
 const db = mysql.createConnection({
 	host : 'localhost',
 	user : 'root',

@@ -43,6 +43,11 @@ export class OwnBookComponent {
   }
 
 
+
+  ionViewWillLeave(){
+    this.events.publish('showChoices');
+  }
+  
 getBookArr(){
 	this.ownedBooks = this.usrInfo.getBookArray();
 	if(this.ownedBooks.length <= 0){

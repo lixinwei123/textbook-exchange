@@ -43,6 +43,9 @@ getBookArr(){
 		setTimeout(bad => {this.getBookArr()}, 1000)
 	}
 }
+  ionViewWillLeave(){
+    this.events.publish('showChoices');
+  }
 
 closeModal(){
 	this.viewCtrl.dismiss();

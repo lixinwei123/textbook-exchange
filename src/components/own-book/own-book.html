@@ -5,24 +5,24 @@
 	<ion-grid>
 		<h3 style = "margin-left:0.8rem;">Registered Books:</h3>
 		<ion-row style = "margin-top:1rem;">
-			<ion-col>
+			<ion-col class = "isbn-margin">
 				ISBN
 			</ion-col>
 			<ion-col>
 				name
 			</ion-col>
-			<ion-col>
+			<ion-col class = "options-margin">
 				options
 			</ion-col>
 		</ion-row>
 		<ion-row *ngFor = "let book of ownedBooks">
-			<ion-col>
+			<ion-col class = "isbn-margin">
 				{{book.isbn}}
 			</ion-col>
 			<ion-col>
 				 {{book.name}}
 			</ion-col>
-			<ion-col>
+			<ion-col class = "options-margin">
 				<span *ngIf = "book.exchange" ><ion-icon name = "checkbox" color = "secondary"></ion-icon> Exchange &nbsp; &nbsp;</span>
 				<span *ngIf = "book.sell"> <ion-icon name = "checkbox" ></ion-icon> Sell ${{book.price}}</span> 
 				<button ion-button icon-only class = "delete-button" (click) = "confirmDeletion(book)"> <ion-icon name = "close" ></ion-icon></button>

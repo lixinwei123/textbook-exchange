@@ -25720,6 +25720,14 @@ find-match .create-button {
   color: #3261ad !important;
 }
 
+find-match .name-margin {
+  margin-left: 2rem !important;
+}
+
+find-match .isbn-margin {
+  margin-right: 2rem !important;
+}
+
 need-book ion-content {
   opacity: 0.9;
 }
@@ -25756,6 +25764,14 @@ need-book .create-button {
   color: #3261ad !important;
 }
 
+need-book .isbn-margin {
+  margin-left: 2rem !important;
+}
+
+need-book .options-margin {
+  margin-right: 2rem !important;
+}
+
 own-book ion-content {
   opacity: 0.9;
 }
@@ -25790,6 +25806,14 @@ own-book .add-button {
 
 own-book .create-button {
   color: #3261ad !important;
+}
+
+own-book .isbn-margin {
+  margin-left: 2rem !important;
+}
+
+own-book .options-margin {
+  margin-right: 2rem !important;
 }
 
 register ion-content {

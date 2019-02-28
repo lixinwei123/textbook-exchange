@@ -43,6 +43,10 @@ closeModal(){
 	console.log('clicked on closeModal function');
 }
 
+  ionViewWillLeave(){
+    this.events.publish('showChoices');
+  }
+  
 findExchanger(){
 	this.exchangerArray = [];
 	var user_obj = {

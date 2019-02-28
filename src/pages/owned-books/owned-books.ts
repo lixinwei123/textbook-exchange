@@ -26,6 +26,7 @@ export class OwnedBooksPage {
   	 public modalCtrl: ModalController,
      private menuCtrl: MenuController,
      private usrInfo: UserinfoProvider) {
+    this.mainChoice = true;
   	 this.events.subscribe('showChoices', () =>{
   		console.log("this got triggered");
   		this.mainChoice = true;
@@ -44,19 +45,21 @@ export class OwnedBooksPage {
 
   goToOwnedBooks(){
   	let modal = this.modalCtrl.create(OwnBookComponent)
-  	//this.mainChoice = false;
+  	this.mainChoice = false;
   	modal.present();
   }
   goToNeedBooks(){
   	 let modal = this.modalCtrl.create(NeedBookComponent);
-  	 //this.mainChoice = false;
+  	 this.mainChoice = false;
   	 	modal.present();
   }
   goToFindMatch(){
       let modal = this.modalCtrl.create(FindMatchComponent);
-      //this.mainChoice = false;
+      this.mainChoice = false;
       modal.present();
   }
 
-
+  ionViewWillLeave(){
+    this.events.publish('showChoices');
+  }
 }

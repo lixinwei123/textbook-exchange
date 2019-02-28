@@ -5,7 +5,7 @@
   <ion-list>
   <ion-grid>
 		<ion-row style = "margin-top:1rem;">
-			<ion-col>
+			<ion-col class = "name-margin">
 				Name:
 			</ion-col>
 			<ion-col>
@@ -20,12 +20,12 @@
 			<ion-col>
 				Your Book's Title:
 			</ion-col>
-			<ion-col>
+			<ion-col class = "isbn-margin">
 				Your Book's ISBN:
 			</ion-col>
 		</ion-row>
 		<ion-row *ngFor = "let exchanger of exchangerArray">
-			<ion-col>
+			<ion-col class = "name-margin">
 				{{exchanger.name}}
 			</ion-col>
 			<ion-col>
@@ -40,7 +40,7 @@
 				<ion-col>
 				 {{exchanger.owned_title}}
 			</ion-col>
-				<ion-col>
+				<ion-col class = "isbn-margin">
 				 {{exchanger.owned_ISBN}}
 			</ion-col>
 		</ion-row>
@@ -48,7 +48,7 @@
   	<h2>Selling Offer(s):</h2>
   <ion-grid>
 		<ion-row style = "margin-top:1rem;">
-			<ion-col>
+			<ion-col class = "name-margin">
 				Name:
 			</ion-col>
 			<ion-col>
@@ -65,7 +65,7 @@
 			</ion-col>
 		</ion-row>
 		<ion-row *ngFor = "let seller of sellerArray">
-			<ion-col>
+			<ion-col class = "name-margin">
 				{{seller.name}}
 			</ion-col>
 			<ion-col>
@@ -85,7 +85,7 @@
    	<h3>Buying Offer(s):</h3>
   <ion-grid>
 		<ion-row style = "margin-top:1rem;">
-			<ion-col>
+			<ion-col  class = "name-margin">
 				Name:
 			</ion-col>
 			<ion-col>
@@ -102,7 +102,7 @@
 			</ion-col>
 		</ion-row>
 		<ion-row *ngFor = "let buyer of buyerArray">
-			<ion-col>
+			<ion-col  class = "name-margin">
 				{{buyer.name}}
 			</ion-col>
 			<ion-col>
