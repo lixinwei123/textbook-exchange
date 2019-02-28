@@ -922,7 +922,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var RestProvider = /** @class */ (function () {
     function RestProvider(http) {
         this.http = http;
-        this.apiUrl = "http://62696024.ngrok.io";
+        this.apiUrl = "http://d0031437.ngrok.io";
         console.log('Hello RestProvider Provider');
     }
     RestProvider.prototype.postRequest = function (uObj, method) {
@@ -939,9 +939,10 @@ var RestProvider = /** @class */ (function () {
     RestProvider.prototype.getRequest = function (uObj, method) { };
     RestProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
     ], RestProvider);
     return RestProvider;
+    var _a;
 }());
 
 //# sourceMappingURL=rest.js.map

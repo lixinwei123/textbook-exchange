@@ -95,31 +95,27 @@ var OwnedBooksPage = /** @class */ (function () {
     };
     OwnedBooksPage.prototype.goToOwnedBooks = function () {
         var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__components_own_book_own_book__["a" /* OwnBookComponent */]);
-        this.mainChoice = false;
+        //this.mainChoice = false;
         modal.present();
     };
     OwnedBooksPage.prototype.goToNeedBooks = function () {
         var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_2__components_need_book_need_book__["a" /* NeedBookComponent */]);
-        this.mainChoice = false;
+        //this.mainChoice = false;
         modal.present();
     };
     OwnedBooksPage.prototype.goToFindMatch = function () {
         var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_5__components_find_match_find_match__["a" /* FindMatchComponent */]);
-        this.mainChoice = false;
+        //this.mainChoice = false;
         modal.present();
     };
     OwnedBooksPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-owned-books',template:/*ion-inline-start:"/Users/kevinli/Desktop/ci103/textbook-exchange/src/pages/owned-books/owned-books.html"*/'<!--\n  Generated template for the OwnedBooksPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<!-- <ion-header>\n\n  <ion-navbar>\n    <ion-title>owned-books</ion-title>\n  </ion-navbar>\n\n</ion-header> -->\n\n\n<ion-content padding class = "background-photo" #content>\n    <ion-buttons left >\n      <button ion-button icon-only menuToggle style = "background: transparent;">\n        <ion-icon name=\'menu\'></ion-icon>\n      </button>\n    </ion-buttons>\n<!--   <ion-menu side="start" id="side-menu" [content] = "content" autoHide = "false" type = "overlay">\n  <ion-header>\n    <ion-toolbar color="primary">\n      <ion-title >Dash Board</ion-title>\n    </ion-toolbar>\n  </ion-header>\n  <ion-content>\n    <ion-list>\n      <ion-item (click) = "logout();">log out bitch</ion-item>\n      <ion-item>Menu Item</ion-item>\n      <ion-item>Menu Item</ion-item>\n      <ion-item>Menu Item</ion-item>\n      <ion-item>Menu Item</ion-item>\n    </ion-list>\n  </ion-content>\n</ion-menu> -->\n<div *ngIf = "mainChoice">\n<h1 class = "header-info">do you wish to register the books you owned or the books you need?</h1>\n<ion-grid class = "need-or-sell">\n	<ion-row>\n		<ion-col><button ion-button class = "button-1" (click) = "goToOwnedBooks()">Owned Textbooks</button></ion-col>\n    <ion-col><button ion-button class = "button-3" (click) = "goToFindMatch()">Let\'s Find A Match</button></ion-col>\n		<ion-col><button ion-button class = "button-2" (click) = "goToNeedBooks()">Needed Textbooks</button></ion-col>\n	</ion-row>\n</ion-grid>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/kevinli/Desktop/ci103/textbook-exchange/src/pages/owned-books/owned-books.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_userinfo_userinfo__["a" /* UserinfoProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__providers_userinfo_userinfo__["a" /* UserinfoProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_userinfo_userinfo__["a" /* UserinfoProvider */]) === "function" && _f || Object])
     ], OwnedBooksPage);
     return OwnedBooksPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=owned-books.js.map

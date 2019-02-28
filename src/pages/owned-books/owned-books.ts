@@ -44,17 +44,17 @@ export class OwnedBooksPage {
 
   goToOwnedBooks(){
   	let modal = this.modalCtrl.create(OwnBookComponent)
-  	this.mainChoice = false;
+  	//this.mainChoice = false;
   	modal.present();
   }
   goToNeedBooks(){
   	 let modal = this.modalCtrl.create(NeedBookComponent);
-  	 this.mainChoice = false;
+  	 //this.mainChoice = false;
   	 	modal.present();
   }
   goToFindMatch(){
       let modal = this.modalCtrl.create(FindMatchComponent);
-      this.mainChoice = false;
+      //this.mainChoice = false;
       modal.present();
   }
 
